@@ -3,4 +3,8 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="desc_img_logo_touristoffice">Logo office de tourisme</string>
+    <string name="desc_img_logo_valais_1815">Logo valais 1815-2015</string>
+    <string name="welcome_text">Bienvenue au centre du valais!</string>
 </resources>

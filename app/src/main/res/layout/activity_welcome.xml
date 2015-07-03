@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical|center_horizontal"
+    android:padding="16dp"
+    tools:context="com.hevs.projectcloud.touristofficehealthyservice.WelcomeActivity">
+
+    <ImageView
+        android:id="@+id/img_cm_valais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/desc_img_logo_touristoffice"
+        android:scaleType="centerInside"
+        android:src="@drawable/cm_valais"
+        android:layout_alignRight="@+id/welcome_text"
+        android:layout_alignEnd="@+id/welcome_text"
+        android:layout_alignBottom="@+id/img_logo_valais_1815"
+        android:layout_marginBottom="252dp" />
+
+    <TextView
+        android:id="@+id/welcome_text"
+        android:layout_below="@id/img_cm_valais"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textColor="#ff9c0b05"/>
+
+    <ImageView
+        android:id="@+id/img_logo_valais_1815"
+
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:contentDescription="@string/desc_img_logo_valais_1815"
+        android:scaleType="centerInside"
+        android:src="@drawable/vw_2015"
+        android:maxHeight="200dp"
+        android:maxWidth="200dp" />
+
+</RelativeLayout>
