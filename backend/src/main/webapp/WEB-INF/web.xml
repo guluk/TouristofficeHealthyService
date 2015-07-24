@@ -46,7 +46,9 @@
 
 
     <welcome-file-list>
-        <!-- <welcome-file>index.html</welcome-file> -->
-        <welcome-file>touristoffice.jsp</welcome-file>
+       <!-- <welcome-file>index.html</welcome-file>-->
+        <welcome-file>welcome.html</welcome-file>
+        <!--<welcome-file>touristoffice.jsp</welcome-file>-->
     </welcome-file-list>
+
 </web-app>
