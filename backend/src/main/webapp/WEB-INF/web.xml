@@ -24,9 +24,8 @@
                 com.hevs.projectcloud.touristofficebackend.apis.RecommendationEndpoint,
                 com.hevs.projectcloud.touristofficebackend.apis.FeedbackEndpoint,
                 com.hevs.projectcloud.touristofficebackend.apis.PossibilityEndpoint,
-                com.hevs.projectcloud.touristofficebackend.apis.AnswerEndpoint,
-                com.hevs.projectcloud.touristofficebackend.apis.LanguageEndpoint,
-                com.hevs.projectcloud.touristofficebackend.apis.LocaleEndpoint
+                com.hevs.projectcloud.touristofficebackend.apis.ReplyEndpoint,
+                com.hevs.projectcloud.touristofficebackend.apis.TextEndpoint
             </param-value>
         </init-param>
     </servlet>
@@ -46,7 +45,9 @@
 
 
     <welcome-file-list>
-        <!-- <welcome-file>index.html</welcome-file> -->
-        <welcome-file>touristoffice.jsp</welcome-file>
+       <!-- <welcome-file>index.html</welcome-file>-->
+        <welcome-file>welcome.html</welcome-file>
+        <!--<welcome-file>touristoffice.jsp</welcome-file>-->
     </welcome-file-list>
+
 </web-app>

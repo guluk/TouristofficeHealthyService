@@ -15,11 +15,9 @@ public class Feedback {
     @Id
     private Long id;
 
-    private String description;
+    private Text description;
 
     private List<Possibility> possibilities;
-
-    private List<Answer> answers;
 
     public Feedback() { }
 
@@ -27,8 +25,12 @@ public class Feedback {
         return this.id;
     }
 
-    public String getDescription() {
+    public Text getDescription() {
         return this.description;
+    }
+
+    public void setDescription(Text description) {
+        this.description = description;
     }
 
     public List<Possibility> getPossibilities() {
@@ -39,15 +41,22 @@ public class Feedback {
         this.possibilities = possibilities;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    /**
+     * //LG/ Calculates the result points for the feedback/question
+     * @return the sum of the points of the possibilities that are checked
+     */
+    public int calculateReplyResult() {
+
+        int result = 0;
+
+        for (Possibility p : this.possibilities) {
+
+            //LG/ if this option/possibility is checked, add the points of the possibility
+            if (p.getReply().getValue() == true)
+                result += p.getPoints();
+        }
+
+        return result;
     }
 
-    public List<Answer> getAnswers() {
-        return this.answers;
-    }
-
-    public void setAnswers(List<Answer> answers) {
-        this.answers = answers;
-    }
 }

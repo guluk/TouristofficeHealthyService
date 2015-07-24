@@ -5,7 +5,7 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.hevs.projectcloud.touristofficebackend.Constants;
-import com.hevs.projectcloud.touristofficebackend.models.Answer;
+import com.hevs.projectcloud.touristofficebackend.models.Reply;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -20,53 +20,53 @@ import static com.hevs.projectcloud.touristofficebackend.OfyService.ofy;
         namespace = @ApiNamespace(ownerDomain = Constants.API_OWNER,
                 ownerName = Constants.API_OWNER,
                 packagePath = Constants.API_PACKAGE_PATH))
-public class AnswerEndpoint {
+public class ReplyEndpoint {
 
     /**
      * Log output.
      */
     private static final Logger LOG = Logger
-            .getLogger(AnswerEndpoint.class.getName());
+            .getLogger(ReplyEndpoint.class.getName());
 
     /**
      * Lists all the entities inserted in datastore.
-     * @return List of all Answer entities persisted.
+     * @return List of all Reply entities persisted.
      */
     @ApiMethod(httpMethod = "GET")
-    public final List<Answer> listAnswers() {
-        return ofy().load().type(Answer.class).list();
+    public final List<Reply> listReplies() {
+        return ofy().load().type(Reply.class).list();
     }
 
     /**
      * Gets the entity having primary key id.
-     * @param id the primary key of the java bean Answer entity.
+     * @param id the primary key of the java bean Reply entity.
      * @return The entity with primary key id.
      */
     @ApiMethod(httpMethod = "GET")
-    public final Answer getAnswer(@Named("id") final Long id) {
-        return findAnswer(id);
+    public final Reply getReply(@Named("id") final Long id) {
+        return findReply(id);
     }
 
     /**
      * Inserts the entity into App Engine datastore. It uses HTTP POST method.
-     * @param answer the entity to be inserted.
+     * @param reply the entity to be inserted.
      * @return The inserted entity.
      */
     @ApiMethod(httpMethod = "POST")
-    public final Answer insertAnswer(final Answer answer) {
-        ofy().save().entity(answer).now();
-        return answer;
+    public final Reply insertReply(final Reply reply) {
+        ofy().save().entity(reply).now();
+        return reply;
     }
 
     /**
      * Updates an entity. It uses HTTP PUT method.
-     * @param answer the entity to be updated.
+     * @param reply the entity to be updated.
      * @return The updated entity.
      */
     @ApiMethod(httpMethod = "PUT")
-    public final Answer updateAnswer(final Answer answer) {
-        ofy().save().entity(answer).now();
-        return answer;
+    public final Reply updateReply(final Reply reply) {
+        ofy().save().entity(reply).now();
+        return reply;
     }
 
     /**
@@ -74,22 +74,22 @@ public class AnswerEndpoint {
      * @param id the primary key of the entity to be deleted.
      */
     @ApiMethod(httpMethod = "DELETE")
-    public final void removeAnswer(@Named("id") final Long id) {
-        Answer answer = findAnswer(id);
-        if (answer == null) {
+    public final void removeReply(@Named("id") final Long id) {
+        Reply reply = findReply(id);
+        if (reply == null) {
             LOG.info(
-                    "Answer " + id + " not found, skipping deletion.");
+                    "Reply " + id + " not found, skipping deletion.");
             return;
         }
-        ofy().delete().entity(answer).now();
+        ofy().delete().entity(reply).now();
     }
 
     /**
      * Searches an entity by ID.
-     * @param id the answer ID to search
-     * @return the Answer associated to id
+     * @param id the reply ID to search
+     * @return the Reply associated to id
      */
-    private Answer findAnswer(final Long id) {
-        return ofy().load().type(Answer.class).id(id).now();
+    private Reply findReply(final Long id) {
+        return ofy().load().type(Reply.class).id(id).now();
     }
 }
