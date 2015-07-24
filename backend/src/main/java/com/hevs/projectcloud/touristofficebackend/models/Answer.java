@@ -5,25 +5,30 @@ import com.googlecode.objectify.annotation.Id;
 
 /**
  * Created by lukas_000 on 11.07.2015.
+ * for Cloud-Project 645-2 HES-SO Valais
  */
 @Entity
 public class Answer {
 
     @Id
-    private Long key;
+    private Long id;
 
-    private Possibility possiblity;
+    private Possibility possibility;
 
     private int points;
 
     public Answer() {}
 
-    public Possibility getPossiblity() {
-        return this.possiblity;
+    public Long getAnswerId() {
+        return this.id;
     }
 
-    public void setPossiblity_id(Possibility possiblity) {
-        this.possiblity = possiblity;
+    public Possibility getPossibility() {
+        return this.possibility;
+    }
+
+    public void setPossibility(Possibility possibility) {
+        this.possibility = possibility;
     }
 
     public int getPoints() {

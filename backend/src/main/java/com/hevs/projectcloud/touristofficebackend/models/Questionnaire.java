@@ -8,12 +8,13 @@ import java.util.List;
 
 /**
  * Created by lukas_000 on 10.07.2015.
+ * for Cloud-Project 645-2 HES-SO Valais
  */
 @Entity
 public class Questionnaire {
 
     @Id
-    private Long key;
+    private Long id;
 
     private String credentials;
 
@@ -23,6 +24,10 @@ public class Questionnaire {
 
     public Questionnaire() {
 
+    }
+
+    public Long getQuestionnaireId() {
+        return this.id;
     }
 
     public void setCredentials(String credentials) {

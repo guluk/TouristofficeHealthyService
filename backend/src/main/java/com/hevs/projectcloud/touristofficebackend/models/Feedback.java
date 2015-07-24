@@ -7,12 +7,13 @@ import java.util.List;
 
 /**
  * Created by lukas_000 on 11.07.2015.
+ * for Cloud-Project 645-2 HES-SO Valais
  */
 @Entity
 public class Feedback {
 
     @Id
-    private Long key;
+    private Long id;
 
     private String description;
 
@@ -21,6 +22,10 @@ public class Feedback {
     private List<Answer> answers;
 
     public Feedback() { }
+
+    public Long getFeedbackId() {
+        return this.id;
+    }
 
     public String getDescription() {
         return this.description;

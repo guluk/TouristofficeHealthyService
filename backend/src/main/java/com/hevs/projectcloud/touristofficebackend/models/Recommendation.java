@@ -5,12 +5,13 @@ import com.googlecode.objectify.annotation.Id;
 
 /**
  * Created by lukas_000 on 11.07.2015.
+ * for Cloud-Project 645-2 HES-SO Valais
  */
 @Entity
 public class Recommendation {
 
     @Id
-    private Long key;
+    private Long id;
 
     private Category category;
 
@@ -19,6 +20,10 @@ public class Recommendation {
     private int limit;
 
     public Recommendation() {}
+
+    public Long getRecommendationId() {
+        return this.id;
+    }
 
     public Category getCategory() {
         return this.category;
