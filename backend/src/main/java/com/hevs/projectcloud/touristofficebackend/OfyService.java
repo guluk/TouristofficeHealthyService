@@ -4,11 +4,10 @@ import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyFactory;
 import com.googlecode.objectify.ObjectifyService;
 import com.hevs.projectcloud.touristofficebackend.models.Activity;
-import com.hevs.projectcloud.touristofficebackend.models.Answer;
+import com.hevs.projectcloud.touristofficebackend.models.Reply;
 import com.hevs.projectcloud.touristofficebackend.models.Category;
 import com.hevs.projectcloud.touristofficebackend.models.Feedback;
-import com.hevs.projectcloud.touristofficebackend.models.Language;
-import com.hevs.projectcloud.touristofficebackend.models.Locale;
+import com.hevs.projectcloud.touristofficebackend.models.Text;
 import com.hevs.projectcloud.touristofficebackend.models.Possibility;
 import com.hevs.projectcloud.touristofficebackend.models.Question;
 import com.hevs.projectcloud.touristofficebackend.models.Questionnaire;
@@ -35,11 +34,10 @@ public class OfyService {
     static {
         ObjectifyService.register(RegistrationRecord.class);
         factory().register(Activity.class);
-        factory().register(Answer.class);
+        factory().register(Reply.class);
         factory().register(Category.class);
         factory().register(Feedback.class);
-        factory().register(Language.class);
-        factory().register(Locale.class);
+        factory().register(Text.class);
         factory().register(Possibility.class);
         factory().register(Question.class);
         factory().register(Questionnaire.class);

@@ -8,24 +8,24 @@ import com.googlecode.objectify.annotation.Id;
  * for Cloud-Project 645-2 HES-SO Valais
  */
 @Entity
-public class Category {
+public class Reply {
 
     @Id
     private Long id;
 
-    private Text title;
+    private boolean value;
 
-    public Category() {}
+    public Reply() {}
 
-    public Long getCategoryId() {
+    public Long getReplyId() {
         return this.id;
     }
 
-    public Text getTitle() {
-        return title;
+    public boolean getValue() {
+        return this.value;
     }
 
-    public void setTitle(Text title) {
-        this.title = title;
+    public void setValue(boolean value) {
+        this.value = value;
     }
 }

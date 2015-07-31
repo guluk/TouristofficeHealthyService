@@ -18,12 +18,18 @@ public class Questionnaire {
 
     private String credentials;
 
+    private String phoneNumber;
+
+    private String languageCode;
+
     private Date datetime;
 
     private List<Question> questions;
 
+    //LG/ Constructor
     public Questionnaire() {
-
+        //LG/ default language is english
+        this.languageCode = "en";
     }
 
     public Long getQuestionnaireId() {
@@ -36,6 +42,22 @@ public class Questionnaire {
 
     public String getCredentials() {
         return this.credentials;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getPhoneNumber() {
+        return this.phoneNumber;
+    }
+
+    public void setLanguageCode(String languageCode) {
+        this.languageCode = languageCode;
+    }
+
+    public String getLanguageCode() {
+        return this.languageCode;
     }
 
     public void setDatetime(Date datetime) {
@@ -53,4 +75,6 @@ public class Questionnaire {
     public List<Question> getQuestions() {
         return this.questions;
     }
+
+    //LG/ TODO Method that calculates all points per category
 }
