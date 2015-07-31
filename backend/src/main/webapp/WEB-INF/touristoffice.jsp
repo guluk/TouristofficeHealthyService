@@ -33,5 +33,19 @@
             }
         %>
 
+
+         <h1>Questionnaires</h1>
+                <p><em>(stored in Google Datastore)</em></p>
+                <%
+                    List<Entity> categories = (List<Entity>) request.getAttribute("categories");
+                    for (Entity category : categories) {
+                %>
+                <p>
+                    Title: <strong><%= category.getProperty("title") %></strong>
+                </p>
+                <%
+                    }
+                %>
+
     </body>
 </html>
