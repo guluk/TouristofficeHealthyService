@@ -38,6 +38,16 @@
             android:label="Archived Questionnaires"
             android:parentActivityName=".WelcomeActivity" />
 
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/about_activity_label"
+            android:theme="@android:style/Theme.Dialog">
+            <intent-filter>
+                <action android:name="android.intent.action.ABOUT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
