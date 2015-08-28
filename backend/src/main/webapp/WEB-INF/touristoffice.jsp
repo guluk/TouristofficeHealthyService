@@ -20,7 +20,7 @@
 
         <h1>Here are the available questionnaires:</h1>
 
-        <h1>Questionnaires</h1>
+        <h2>Questionnaires</h2>
         <p><em>(stored in Google Datastore)</em></p>
         <%
             List<Entity> questionnaires = (List<Entity>) request.getAttribute("questionnaires");
@@ -33,19 +33,23 @@
             }
         %>
 
-
-         <h1>Questionnaires</h1>
-                <p><em>(stored in Google Datastore)</em></p>
-                <%
-                    List<Entity> categories = (List<Entity>) request.getAttribute("categories");
-                    for (Entity category : categories) {
-                %>
+        <h2>Categories</h2>
+        <%
+        List<Entity> categories = (List<Entity>) request.getAttribute("categories");
+        if (categories != null) {
+            for (Entity category : categories) {
+            %>
                 <p>
-                    Title: <strong><%= category.getProperty("title") %></strong>
+                Title: <strong><%= category.getProperty("title") %></strong>
                 </p>
-                <%
-                    }
-                %>
+            <%
+            }
+        } else {
+        %>
+            <p>There is no category</p>
+        <%
+        }
+        %>
 
     </body>
 </html>
