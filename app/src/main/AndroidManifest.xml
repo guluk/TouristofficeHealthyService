@@ -18,10 +18,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
         </activity>
+
         <activity
             android:name=".WelcomeActivity"
             android:label="@string/title_activity_welcome" >
@@ -31,6 +33,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".QuestionnaireActivity"
+            android:parentActivityName=".WelcomeActivity" />
+
+        <activity
+            android:name=".QuestionnaireListActivity"
+            android:parentActivityName=".WelcomeActivity" />
+
     </application>
 
 </manifest>
