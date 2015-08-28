@@ -17,9 +17,7 @@ public class QuestionnaireListActivity extends ListActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionnaire_list);
 
-        //SD/ Set return in action bar
         ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

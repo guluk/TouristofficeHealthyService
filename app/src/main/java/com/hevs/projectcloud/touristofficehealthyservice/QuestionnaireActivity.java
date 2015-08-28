@@ -1,5 +1,6 @@
 package com.hevs.projectcloud.touristofficehealthyservice;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,6 +23,8 @@ public class QuestionnaireActivity extends Activity
 
         credentialText = (EditText) findViewById(R.id.credentialText);
         phoneText      = (EditText) findViewById(R.id.phoneText);
+
+        ActionBar actionBar = getActionBar();
     }
 
     @Override
