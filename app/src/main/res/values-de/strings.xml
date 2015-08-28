@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TouristofficeHealthyService</string>
+
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="desc_img_logo_touristoffice">Logo Tourismusbüro</string>
+    <string name="desc_img_logo_valais_1815">Logo Wallis 1815-2015</string>
+    <string name="welcome_text">Willkommen im Herzen des Wallis!</string>
+    <string name="welcome_continue_DE">Weiter in Deutsch</string>
+    <string name="welcome_continue_FR">Continuer en français</string>
+    <string name="welcome_continue_EN">Continue in English</string>
+
+</resources>
