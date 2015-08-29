@@ -9,20 +9,21 @@
         <meta charset="utf-8" />
     </head>
     <body>
-        <h1>Categories</h1>
+        <h1>
+            Categories
+            <a class="btn btn-primary btn-sm" href="/add_category">
+                <span class="glyphicon glyphicon-plus"></span>
+                Add Category
+            </a>
+        </h1>
+
         <%
         List<Entity> categories = (List<Entity>) request.getAttribute("categories");
-        if (categories != null) {
-            for (Entity category : categories) {
-            %>
-                <p>
-                Title: <strong><%= category.getProperty("title") %></strong>
-                </p>
-            <%
-            }
-        } else {
+        for (Entity category : categories) {
         %>
-            <p>There is no category</p>
+            <p>
+            Title: <strong><%= category.getProperty("title") %></strong>
+            </p>
         <%
         }
         %>

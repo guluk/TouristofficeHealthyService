@@ -5,8 +5,6 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Query;
-import com.hevs.projectcloud.touristofficebackend.models.Questionnaire;
-
 
 import java.io.IOException;
 
@@ -21,18 +19,42 @@ public class TouristOfficeServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
+        Query query;
+        List<Entity> results;
+        List<Entity> resultsObjs;
+
         try {
             DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-            // Demande tous les questionnaires tries
-            Query q = new Query("Questionnaires");
-            List<Entity> results = datastore.prepare(q).asList(FetchOptions.Builder.withDefaults());
+            switch(this.getInitParameter("data")) {
+                case "questionnaires":
+                    // Demande tous les questionnaires tries
+                    query = new Query("Questionnaires");
+                    results = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
 
-            q = new Query("QuestionnaireObjs");
-            List<Entity> resultsObjs = datastore.prepare(q).asList(FetchOptions.Builder.withDefaults());
+                    query = new Query("QuestionnaireObjs");
+                    resultsObjs = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
 
-            req.setAttribute("questionnaires", results);
-            this.getServletContext().getRequestDispatcher("/WEB-INF/touristoffice.jsp").forward(req, resp);
+                    req.setAttribute("questionnaires", results);
+                    this.getServletContext().getRequestDispatcher("/WEB-INF/questionnaires.jsp").forward(req, resp);
+
+                    break;
+
+                case "categories":
+                    // Demande tous les questionnaires tries
+                    query = new Query("Categories");
+                    results = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+
+                    query = new Query("CategoriesObjs");
+                    resultsObjs = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+
+                    req.setAttribute("categories", results);
+                    this.getServletContext().getRequestDispatcher("/WEB-INF/categories.jsp").forward(req, resp);
+
+                    break;
+            }
+
+
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {

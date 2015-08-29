@@ -37,17 +37,37 @@
     <servlet>
         <servlet-name>TouristofficeHealthyService</servlet-name>
         <servlet-class>com.hevs.projectcloud.touristofficebackend.TouristOfficeServlet</servlet-class>
+        <init-param>
+            <param-name>data</param-name>
+            <param-value>
+                questionnaires
+            </param-value>
+        </init-param>
     </servlet>
+
+    <servlet>
+        <servlet-name>Categories</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.TouristOfficeServlet</servlet-class>
+        <init-param>
+            <param-name>data</param-name>
+            <param-value>
+                categories
+            </param-value>
+        </init-param>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>TouristofficeHealthyService</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/questionnaires</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>Categories</servlet-name>
+        <url-pattern>/categories</url-pattern>
+    </servlet-mapping>
 
     <welcome-file-list>
-       <!-- <welcome-file>index.html</welcome-file>-->
         <welcome-file>welcome.html</welcome-file>
-        <!--<welcome-file>touristoffice.jsp</welcome-file>-->
     </welcome-file-list>
 
 </web-app>
