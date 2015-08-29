@@ -29,14 +29,19 @@
         </activity>
 
         <activity
+            android:name=".MainActivity"
+            android:label="Home"
+            android:parentActivityName=".WelcomeActivity" />
+
+        <activity
             android:name=".QuestionnaireActivity"
             android:label="Questionnaires"
-            android:parentActivityName=".WelcomeActivity" />
+            android:parentActivityName=".MainActivity" />
 
         <activity
             android:name=".QuestionnaireListActivity"
             android:label="Archived Questionnaires"
-            android:parentActivityName=".WelcomeActivity" />
+            android:parentActivityName=".MainActivity" />
 
         <activity
             android:name=".AboutActivity"
@@ -44,7 +49,6 @@
             android:theme="@android:style/Theme.Dialog">
             <intent-filter>
                 <action android:name="android.intent.action.ABOUT" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

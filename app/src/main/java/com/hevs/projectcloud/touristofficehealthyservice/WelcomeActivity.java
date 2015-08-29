@@ -21,27 +21,10 @@ import android.widget.Spinner;
  */
 public class WelcomeActivity extends Activity
 {
-    Spinner languageSpinner;
-    Button  newButton;
-    Button  archivedButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-
-        // Get layout objects instance
-        languageSpinner = (Spinner) findViewById(R.id.languageSpinner);
-        newButton       = (Button)  findViewById(R.id.archivedButton);
-        archivedButton  = (Button)  findViewById(R.id.newButton);
-
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-        R.array.language_array, android.R.layout.simple_spinner_item);
-
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        languageSpinner.setAdapter(adapter);
     }
 
     @Override
@@ -58,10 +41,6 @@ public class WelcomeActivity extends Activity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
         //LG/ Opens the "About-Window"
         if (id == R.id.action_about) {
             Intent i = new Intent("android.intent.action.ABOUT");
@@ -92,12 +71,6 @@ public class WelcomeActivity extends Activity
                 this.setLocale("en");
                 this.continueToMainActivity();
                 break;
-            case R.id.newButton:
-                intent = new Intent(this, QuestionnaireActivity.class);
-                startActivity(intent);
-            case R.id.archivedButton:
-                intent = new Intent(this, QuestionnaireListActivity.class);
-                startActivity(intent);
         }
     }
 

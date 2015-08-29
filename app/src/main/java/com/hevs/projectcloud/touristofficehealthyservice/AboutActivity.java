@@ -1,7 +1,9 @@
 package com.hevs.projectcloud.touristofficehealthyservice;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 /**
  * Created by lukas_000 on 28.08.2015.

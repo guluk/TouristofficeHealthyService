@@ -8,4 +8,25 @@
     <TextView android:text="Hallo Text" android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New"
+        android:id="@+id/newButton"
+        android:onClick="onClick"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:nestedScrollingEnabled="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Archived"
+        android:id="@+id/archivedButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="onClick" />
+
 </RelativeLayout>
