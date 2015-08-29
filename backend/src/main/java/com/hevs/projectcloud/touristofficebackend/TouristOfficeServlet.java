@@ -24,7 +24,7 @@ public class TouristOfficeServlet extends HttpServlet {
         try {
             DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-            // Demande tous les questionnaires triés
+            // Demande tous les questionnaires tries
             Query q = new Query("Questionnaires");
             List<Entity> results = datastore.prepare(q).asList(FetchOptions.Builder.withDefaults());
 
