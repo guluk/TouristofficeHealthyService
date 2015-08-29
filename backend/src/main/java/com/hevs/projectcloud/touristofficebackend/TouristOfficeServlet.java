@@ -36,7 +36,7 @@ public class TouristOfficeServlet extends HttpServlet {
                     resultsObjs = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
 
                     req.setAttribute("questionnaires", results);
-                    this.getServletContext().getRequestDispatcher("/WEB-INF/questionnaires.jsp").forward(req, resp);
+                    this.getServletContext().getRequestDispatcher("/questionnaire/list.jsp").forward(req, resp);
 
                     break;
 
@@ -49,12 +49,10 @@ public class TouristOfficeServlet extends HttpServlet {
                     resultsObjs = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
 
                     req.setAttribute("categories", results);
-                    this.getServletContext().getRequestDispatcher("/WEB-INF/categories.jsp").forward(req, resp);
+                    this.getServletContext().getRequestDispatcher("/category/list.jsp").forward(req, resp);
 
                     break;
             }
-
-
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -86,7 +84,7 @@ public class TouristOfficeServlet extends HttpServlet {
 
             createOtherEntities();
 
-            resp.sendRedirect("/");
+            resp.sendRedirect("/questionnaires");
 
         } catch (IOException e) {
             e.printStackTrace();

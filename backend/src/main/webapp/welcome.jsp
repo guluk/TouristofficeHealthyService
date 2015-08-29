@@ -11,24 +11,12 @@
 
     <!-- Libraries for chart -->
     <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="RadarChart.js"></script>
+    <script src="/script/RadarChart.js"></script>
 </head>
 
 <body role="document" style="padding-top: 70px;">
     <!-- menu for navigate  -->
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Welcome to TOHSA admin</a> <br/>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="./questionnaires">Questionnaires</a></li>
-                    <li><a href="./categories">Categories</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <%@include file="/menu.html" %>
 
     <!-- container-->
     <div class="container theme-showcase" role="main">

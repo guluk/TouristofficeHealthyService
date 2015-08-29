@@ -5,19 +5,33 @@ import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.hevs.projectcloud.touristofficebackend.questionnaires.model.Questionnaire;
+
+import java.util.ArrayList;
 
 /**
  * Created by samuel on 8/28/15.
  */
 public class QuestionnaireListActivity extends ListActivity
 {
+    private ArrayList<Questionnaire> questionnaires = new ArrayList<Questionnaire>();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionnaire_list);
 
-        ActionBar actionBar = getActionBar();
+        ArrayAdapter<Questionnaire> adapter = new ArrayAdapter<Questionnaire>(
+            this,
+            android.R.layout.simple_list_item_1,
+            questionnaires
+        );
+
+        setListAdapter(adapter);
     }
 
     @Override
