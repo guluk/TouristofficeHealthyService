@@ -27,6 +27,42 @@
                 <button type="submit" class="btn btn-primary">Create questionnaires</button>
             </form>
         </div>
+
+        <div class="col-md-6">
+            <!-- Graph container -->
+            <div id="body">
+                <div id="chart"></div>
+            </div>
+
+            <!-- Graph script -->
+            <script>
+                var d = [
+                    [
+                        <%
+                        List<Entity> categories = (List<Entity>) request.getAttribute("categories");
+                        if(categories != null) {
+                        for (Entity category : categories) {
+                        %>
+                            {axis:'<%= category.getProperty("title") %>',value:0.59},
+                        <%
+                        } }
+                        %>
+
+                        {axis:"Email",value:0.59},
+                        {axis:"Social Networks",value:0.56},
+                        {axis:"View Shopping sites",value:0.14},
+                        {axis:"Online Gaming",value:0.12},
+                        {axis:"Navigation",value:0.27},
+                        {axis:"Photo Video",value:0.4},
+                        {axis:"Reading",value:0.03},
+                        {axis:"Listen Radio",value:0.07},
+                        {axis:"Sending Money",value:0.18},
+                        {axis:"Use less Once week",value:0.08}
+                    ]
+                ];
+            </script>
+            <script type="text/javascript" src="/script.jsp"></script>
+        </div>
     </div>
 
     <h2>From datastore</h2>

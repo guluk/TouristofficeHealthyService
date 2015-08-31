@@ -32,27 +32,28 @@ public class TouristOfficeServlet extends HttpServlet {
                     query = new Query("Questionnaires");
                     results = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
 
-                    query = new Query("QuestionnaireObjs");
-                    resultsObjs = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
-
                     req.setAttribute("questionnaires", results);
-                    this.getServletContext().getRequestDispatcher("/questionnaire/list.jsp").forward(req, resp);
-
-                    break;
+                    //@todo: temporarly disable break to have all data
+                    //break;
 
                 case "categories":
                     // Demande tous les questionnaires tries
                     query = new Query("Categories");
                     results = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
 
-                    query = new Query("CategoriesObjs");
-                    resultsObjs = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
-
                     req.setAttribute("categories", results);
-                    this.getServletContext().getRequestDispatcher("/category/list.jsp").forward(req, resp);
-
                     break;
             }
+
+            switch(this.getInitParameter("data")) {
+                case "questionnaires":
+                    this.getServletContext().getRequestDispatcher("/questionnaire/list.jsp").forward(req, resp);
+                    break;
+                case "categories":
+                    this.getServletContext().getRequestDispatcher("/category/list.jsp").forward(req, resp);
+                    break;
+            }
+
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
