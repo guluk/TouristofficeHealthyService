@@ -18,37 +18,34 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
         <activity
             android:name=".WelcomeActivity"
-            android:label="@string/title_activity_welcome" >
+            android:label="@string/activity_welcome_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
-            android:label="Home"
+            android:label="@string/activity_main_name"
             android:parentActivityName=".WelcomeActivity" />
-
         <activity
             android:name=".QuestionnaireActivity"
-            android:label="Questionnaires"
+            android:label="@string/activity_questionnaire_name"
             android:parentActivityName=".MainActivity" />
-
         <activity
             android:name=".QuestionnaireListActivity"
-            android:label="Archived Questionnaires"
+            android:label="@string/activity_questionnairelist_name"
             android:parentActivityName=".MainActivity" />
-
         <activity
             android:name=".AboutActivity"
             android:label="@string/about_activity_label"
-            android:theme="@android:style/Theme.Dialog">
+            android:theme="@android:style/Theme.Dialog" >
             <intent-filter>
                 <action android:name="android.intent.action.ABOUT" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
