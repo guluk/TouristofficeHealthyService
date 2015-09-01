@@ -43,6 +43,14 @@ public class TouristOfficeServlet extends HttpServlet {
 
                     req.setAttribute("categories", results);
                     break;
+
+                case "addCategory":
+                    // Demande tous les questionnaires tries
+                    query = new Query("AddCategory");
+                    results = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+
+                    req.setAttribute("addCategory", results);
+                    break;
             }
 
             switch(this.getInitParameter("data")) {
@@ -52,6 +60,8 @@ public class TouristOfficeServlet extends HttpServlet {
                 case "categories":
                     this.getServletContext().getRequestDispatcher("/category/list.jsp").forward(req, resp);
                     break;
+                case "addCategory":
+                    this.getServletContext().getRequestDispatcher("/category/AddCategory.jsp").forward(req, resp);
             }
 
         } catch (ServletException e) {
