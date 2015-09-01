@@ -7,7 +7,9 @@
         Categories
     </h1>
 
-    <form>
+
+
+    <form method="POST" action="/process">
     Categorie FR:<br>
     <input type ="text" name="catFR">
     <br>
@@ -16,10 +18,9 @@
         <br>
          Categorie DE:<br>
             <input type ="text" name="catDE">
+        <br>
+        <input type="submit" value="ajouter">
      </form>
-
-
-
 
 
 <%@include file="/footer.html" %>
