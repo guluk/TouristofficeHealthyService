@@ -49,6 +49,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".QuestionnaireDetailsActivity"
+            android:label="@string/title_activity_questionnaire_details"
+            android:parentActivityName=".QuestionnaireActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hevs.projectcloud.touristofficehealthyservice.QuestionnaireActivity" />
+        </activity>
     </application>
 
 </manifest>

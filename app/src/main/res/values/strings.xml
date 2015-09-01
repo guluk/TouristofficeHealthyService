@@ -6,6 +6,7 @@
     <string name="activity_questionnaire_name">Questionnaires</string>
     <string name="activity_questionnairelist_name">Archived Questionnaires</string>
     <string name="about_activity_label">About this application</string>
+    <string name="title_activity_questionnaire_details">QuestionnaireDetailsActivity</string>
 
     <!-- Other general strings -->
     <string-array name="language_array">
@@ -29,7 +30,6 @@
     <string name="about_thanks">Merci d\'utiliser notre application!</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_questionnaire_details">QuestionnaireDetailsActivity</string>
 
     <!-- Strings used in MainActivity -->
 
