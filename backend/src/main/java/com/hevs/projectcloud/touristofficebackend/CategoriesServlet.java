@@ -61,7 +61,8 @@ public class CategoriesServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try {
-            DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+           DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
             Text title = new Text();
             title.setText(
@@ -70,9 +71,11 @@ public class CategoriesServlet extends HttpServlet {
                 req.getParameter("titleFR")
             );
 
+            ofy().save().entity(title).now();
+
             // Store a category
-            Entity category = new Entity("Categories");
-            category.setProperty("title", title.getTextEN());
+           Entity category = new Entity("Categories");
+           category.setProperty("title", title.getTextEN());
             datastore.put(category);
 
             // Store related strings
