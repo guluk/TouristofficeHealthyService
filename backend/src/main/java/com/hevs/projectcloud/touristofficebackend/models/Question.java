@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 public class Question extends Feedback {
 
-    private List<Category> categories;
+    private Category category;
 
     public Question() { }
 
@@ -19,12 +19,11 @@ public class Question extends Feedback {
         return super.getFeedbackId();
     }
 
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public List<Category> getCategories() {
-        return this.categories;
+    public Category getCategory() {
+        return this.category;
     }
-
 }
