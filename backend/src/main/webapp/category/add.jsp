@@ -9,7 +9,7 @@
 
     <div class="row">
         <div class="col-md-6">
-            <form action="./process" method="post">
+            <form action="/categories/add/" method="post">
                 <div class="form-group">
                     <label for="titleFR">Category FR</label>
                     <input name="titleFR" type="text" class="form-control">

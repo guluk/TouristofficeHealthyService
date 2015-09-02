@@ -26,56 +26,17 @@ public class TouristOfficeServlet extends HttpServlet {
         try {
             DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-            switch(this.getInitParameter("data")) {
-                case "questionnaires":
-                    // Demande tous les questionnaires tries
-                    query = new Query("Questionnaires");
-                    results = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+            // Demande tous les questionnaires tries
+            query = new Query("Questionnaires");
+            results = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+            req.setAttribute("questionnaires", results);
 
-                    req.setAttribute("questionnaires", results);
-                    //@todo: temporarly disable break to have all data
-                    //break;
+            // Demande toutes les categories tries
+            query = new Query("Categories");
+            results = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+            req.setAttribute("categories", results);
 
-                case "categories":
-                    // Demande tous les questionnaires tries
-                    query = new Query("Categories");
-                    results = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
-
-                    req.setAttribute("categories", results);
-                    break;
-
-                case "addCategory":
-                    // Demande tous les questionnaires tries
-                    query = new Query("AddCategory");
-                    results = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
-
-                    req.setAttribute("addCategory", results);
-                    break;
-
-                case "process":
-                    // Demande tous les questionnaires tries
-                    query = new Query("Process");
-                    results = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
-
-                    req.setAttribute("process", results);
-                    break;
-            }
-
-            switch(this.getInitParameter("data")) {
-                case "questionnaires":
-                    this.getServletContext().getRequestDispatcher("/questionnaire/list.jsp").forward(req, resp);
-                    break;
-                case "categories":
-                    this.getServletContext().getRequestDispatcher("/category/list.jsp").forward(req, resp);
-                    break;
-                case "addCategory":
-                    this.getServletContext().getRequestDispatcher("/category/AddCategory.jsp").forward(req, resp);
-                    break;
-                case "process":
-                    this.getServletContext().getRequestDispatcher("/category/process.jsp").forward(req, resp);
-                    break;
-            }
-
+            this.getServletContext().getRequestDispatcher("/questionnaire/list.jsp").forward(req, resp);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
