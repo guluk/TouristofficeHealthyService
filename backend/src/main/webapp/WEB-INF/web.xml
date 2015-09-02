@@ -69,13 +69,7 @@
 
     <servlet>
         <servlet-name>Process</servlet-name>
-        <servlet-class>com.hevs.projectcloud.touristofficebackend.TouristOfficeServlet</servlet-class>
-        <init-param>
-            <param-name>data</param-name>
-            <param-value>
-                process
-            </param-value>
-        </init-param>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.CategoriesServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

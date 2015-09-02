@@ -9,18 +9,18 @@
 
     <div class="row">
         <div class="col-md-6">
-            <form action="/process" method="post">
+            <form action="./process" method="post">
                 <div class="form-group">
-                    <label for="catFR">Category FR</label>
-                    <input name="catFR" type="text" class="form-control">
+                    <label for="titleFR">Category FR</label>
+                    <input name="titleFR" type="text" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="catEN">Category EN</label>
-                    <input name="catEN" type="text" class="form-control">
+                    <label for="titleDE">Category DE</label>
+                    <input name="titleDE" type="text" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="catDE">Category EN</label>
-                    <input name="catDE" type="text" class="form-control">
+                    <label for="titleEN">Category EN</label>
+                    <input name="titleEN" type="text" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary">Add Category</button>
             </form>

@@ -6,7 +6,7 @@
 
     <h1>
         Categories
-        <a class="btn btn-primary btn-sm" href="/add_category">
+        <a class="btn btn-primary btn-sm" href="category/AddCategory.jsp">
             <span class="glyphicon glyphicon-plus"></span>
             Add Category
         </a>

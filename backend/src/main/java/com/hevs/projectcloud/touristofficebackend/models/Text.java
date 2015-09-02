@@ -23,7 +23,7 @@ public class Text {
 
     public static final String LANGUAGE_CODE_DE = "de";
 
-    private Text() {
+    public Text() {
         this.textEN = null;
         this.textFR = null;
         this.textDE = null;
