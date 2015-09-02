@@ -68,13 +68,33 @@ public class Questionnaire {
         return this.datetime;
     }
 
+    //TODO this is probably to change into "Feedback" instead of "Question"
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
 
+    //TODO this is probably to change into "Feedback" instead of "Question"
     public List<Question> getQuestions() {
         return this.questions;
     }
 
-    //LG/ TODO Method that calculates all points per category
+    /**
+     *
+     * @param c the Category for which the result should be given in return
+     * @return the total number of points (values of the possibilities) for this Category
+     */
+    public int calculateReplyResultPerCategory(Category c) {
+
+        int result = 0;
+
+        for(Question q : this.questions) {
+
+            //LG/ if the category of the question matches the category given as argument
+            //    the result is increased with the value of the checked replies
+            if(q.getCategory() == c)
+                result += q.calculateReplyResult();
+        }
+
+        return result;
+    }
 }
