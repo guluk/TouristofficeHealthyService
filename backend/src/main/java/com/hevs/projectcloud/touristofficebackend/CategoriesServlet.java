@@ -5,6 +5,8 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Query;
+import com.hevs.projectcloud.touristofficebackend.apis.CategoryEndpoint;
+import com.hevs.projectcloud.touristofficebackend.models.Category;
 import com.hevs.projectcloud.touristofficebackend.models.Text;
 
 import java.io.IOException;
@@ -14,6 +16,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import static com.hevs.projectcloud.touristofficebackend.OfyService.ofy;
 
 /**
  * Created by samuel on 9/2/15.
@@ -77,6 +81,13 @@ public class CategoriesServlet extends HttpServlet {
             titleEntity.setProperty("textDE", title.getTextDE());
             titleEntity.setProperty("textEN", title.getTextEN());
             datastore.put(titleEntity);
+
+
+            //test
+            Category c = new Category();
+            c.setTitle(title);
+
+            ofy().save().entity(c).now();
 
             resp.sendRedirect("/categories/list/");
         } catch (IOException e) {
