@@ -64,6 +64,7 @@ public class CategoriesServlet extends HttpServlet {
 
            DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
+
             Text title = new Text();
             title.setText(
                 req.getParameter("titleEN"),
@@ -71,26 +72,24 @@ public class CategoriesServlet extends HttpServlet {
                 req.getParameter("titleFR")
             );
 
-            ofy().save().entity(title).now();
+
+            // Store related strings
+            Entity titleEntity = new Entity("Text");
+            titleEntity.setProperty("textFR", title.getTextFR());
+            titleEntity.setProperty("textDE", title.getTextDE());
+            titleEntity.setProperty("textEN", title.getTextEN());
+            datastore.put(titleEntity);
+
 
             // Store a category
            Entity category = new Entity("Categories");
-           category.setProperty("title", title.getTextEN());
-            //datastore.put(category);
-
-            // Store related strings
-           // Entity titleEntity = new Entity("Textes");
-           // titleEntity.setProperty("textFR", title.getTextFR());
-           // titleEntity.setProperty("textDE", title.getTextDE());
-           // titleEntity.setProperty("textEN", title.getTextEN());
-           // datastore.put(titleEntity);
+            category.setProperty("titleDE", title.getTextDE());
+            category.setProperty("titleFR", title.getTextEN());
+            category.setProperty("titleEN", title.getTextFR());
 
 
-            //test
-            Category c = new Category();
-            c.setTitle(title);
+            datastore.put(category);
 
-            ofy().save().entity(c).now();
 
             resp.sendRedirect("/categories/list/");
         } catch (IOException e) {

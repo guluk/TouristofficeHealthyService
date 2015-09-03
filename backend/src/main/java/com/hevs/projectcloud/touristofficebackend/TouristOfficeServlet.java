@@ -116,5 +116,12 @@ public class TouristOfficeServlet extends HttpServlet {
         /* TODO add relation to recommodation */
         datastore.put(activity1);
 
+        // Store related strings
+        Entity titleEntity = new Entity("Text");
+        titleEntity.setProperty("textFR", "textfr");
+        titleEntity.setProperty("textDE", "textde");
+        titleEntity.setProperty("textEN", "texten");
+        datastore.put(titleEntity);
+
     }
 }
