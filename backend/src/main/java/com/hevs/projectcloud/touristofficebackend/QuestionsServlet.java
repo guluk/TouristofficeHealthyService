@@ -5,7 +5,6 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Query;
-import com.hevs.projectcloud.touristofficebackend.apis.CategoryEndpoint;
 import com.hevs.projectcloud.touristofficebackend.models.Category;
 import com.hevs.projectcloud.touristofficebackend.models.Text;
 
@@ -22,33 +21,36 @@ import static com.hevs.projectcloud.touristofficebackend.OfyService.ofy;
 /**
  * Created by samuel on 9/2/15.
  */
-public class CategoriesServlet extends HttpServlet {
+public class QuestionsServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         Query query;
-        List<Entity> results;
-        List<Entity> resultsObjs;
 
         try {
             DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
              // Demande toutes les categories tries
-            query = new Query("Categories");
-            results = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+            query = new Query("Questionnaires");
+            List<Entity> questionnaires = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
 
-            req.setAttribute("categories", results);
+            query = new Query("Categories");
+            List<Entity> categories = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+
+            req.setAttribute("questionnaires", questionnaires);
+            req.setAttribute("categories", categories);
+
 
             if (this.getInitParameter("page") != null) {
                 switch (this.getInitParameter("page")) {
                     case "add":
-                        this.getServletContext().getRequestDispatcher("/category/add.jsp").forward(req, resp);
+                        this.getServletContext().getRequestDispatcher("/questionnaire/add.jsp").forward(req, resp);
                         break;
                     default:
-                        this.getServletContext().getRequestDispatcher("/category/list.jsp").forward(req, resp);
+                        this.getServletContext().getRequestDispatcher("/questionnaire/list.jsp").forward(req, resp);
                 }
             } else {
-                this.getServletContext().getRequestDispatcher("/category/list.jsp").forward(req, resp);
+                this.getServletContext().getRequestDispatcher("/questionnaire/list.jsp").forward(req, resp);
             }
         } catch (ServletException e) {
             e.printStackTrace();
@@ -64,35 +66,29 @@ public class CategoriesServlet extends HttpServlet {
 
            DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-            Text title = new Text();
-            title.setText(
-                req.getParameter("titleEN"),
-                req.getParameter("titleDE"),
-                req.getParameter("titleFR")
+
+            Text description = new Text();
+            description.setText(
+                    req.getParameter("titleEN"),
+                    req.getParameter("titleDE"),
+                    req.getParameter("titleFR")
             );
 
-            ofy().save().entity(title).now();
+            ofy().save().entity(description).now();
 
-            // Store a category
-           Entity category = new Entity("Categories");
-           category.setProperty("title", title.getTextEN());
-            //datastore.put(category);
+            // get the categorie to add to the DB
+            String catid = req.getParameter("cat");
 
-            // Store related strings
-           // Entity titleEntity = new Entity("Textes");
-           // titleEntity.setProperty("textFR", title.getTextFR());
-           // titleEntity.setProperty("textDE", title.getTextDE());
-           // titleEntity.setProperty("textEN", title.getTextEN());
-           // datastore.put(titleEntity);
+            Category cat = ofy().load().type(Category.class).id(catid).now();
+
+            Entity question = new Entity("Questionnaires");
+            question.setProperty("category", cat);
+            question.setProperty("description",description);
+
+            ofy().save().entity(question).now();
 
 
-            //test
-            Category c = new Category();
-            c.setTitle(title);
-
-            ofy().save().entity(c).now();
-
-            resp.sendRedirect("/categories/list/");
+            resp.sendRedirect("/questionnaires/list/");
         } catch (IOException e) {
             e.printStackTrace();
         }

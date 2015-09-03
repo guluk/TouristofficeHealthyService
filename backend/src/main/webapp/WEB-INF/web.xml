@@ -46,6 +46,24 @@
     </servlet>
 
     <servlet>
+        <servlet-name>Questionnaires</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.QuestionsServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>addQuestionnaires</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.QuestionsServlet</servlet-class>
+
+        <init-param>
+            <param-name>page</param-name>
+            <param-value>
+                add
+            </param-value>
+        </init-param>
+    </servlet>
+
+
+    <servlet>
         <servlet-name>Categories</servlet-name>
         <servlet-class>com.hevs.projectcloud.touristofficebackend.CategoriesServlet</servlet-class>
     </servlet>
@@ -65,6 +83,16 @@
     <servlet-mapping>
         <servlet-name>TouristofficeHealthyService</servlet-name>
         <url-pattern>/questionnaires/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Questionnaires</servlet-name>
+        <url-pattern>/questionnaires/list/</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>addQuestionnaires</servlet-name>
+        <url-pattern>/questionnaires/add/</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
