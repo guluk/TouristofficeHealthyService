@@ -6,6 +6,27 @@ package com.hevs.projectcloud.touristofficebackend;
  */
 public final class Constants {
 
+
+    /**
+     * Google Cloud Messaging API key.
+     */
+    public static final String GCM_API_KEY = "YOUR-GCM-API-KEY";
+
+    /**
+     * Android client ID from Google Cloud console.
+     */
+    public static final String ANDROID_CLIENT_ID = "YOUR-ANDROID-CLIENT-ID";
+
+    /**
+     * Web client ID from Google Cloud console.
+     */
+    public static final String WEB_CLIENT_ID = "YOUR-WEB-CLIENT-ID";
+
+    /**
+     * Audience ID used to limit access to some client to the API.
+     */
+    public static final String AUDIENCE_ID = WEB_CLIENT_ID;
+
     /**
      * API package name.
      */

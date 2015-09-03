@@ -1,6 +1,7 @@
 package com.hevs.projectcloud.touristofficebackend.apis;
 
 import com.google.api.server.spi.config.Api;
+import com.google.api.server.spi.config.ApiClass;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
@@ -16,10 +17,16 @@ import static com.hevs.projectcloud.touristofficebackend.OfyService.ofy;
  * Created by lukas_000 on 12.07.2015.
  * for Cloud-Project 645-2 HES-SO Valais
  */
-@Api(name = "questionnaires", version = "v1",
+@Api(name = "tohsaService", version = "v1",
         namespace = @ApiNamespace(ownerDomain = Constants.API_OWNER,
                 ownerName = Constants.API_OWNER,
                 packagePath = Constants.API_PACKAGE_PATH))
+@ApiClass(resource = "categories",
+        clientIds = {
+                Constants.ANDROID_CLIENT_ID,
+                Constants.WEB_CLIENT_ID},
+        audiences = {Constants.AUDIENCE_ID}
+)
 public class CategoryEndpoint {
 
     /**
