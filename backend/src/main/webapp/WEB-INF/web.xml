@@ -63,13 +63,13 @@
     </servlet>
 
     <servlet>
-        <servlet-name>Categories</servlet-name>
-        <servlet-class>com.hevs.projectcloud.touristofficebackend.CategoriesServlet</servlet-class>
+        <servlet-name>Questions</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.QuestionsServlet</servlet-class>
     </servlet>
 
     <servlet>
-        <servlet-name>addCategory</servlet-name>
-        <servlet-class>com.hevs.projectcloud.touristofficebackend.CategoriesServlet</servlet-class>
+        <servlet-name>addQuestion</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.QuestionsServlet</servlet-class>
 
         <init-param>
             <param-name>page</param-name>
@@ -92,6 +92,47 @@
             <param-name>page</param-name>
             <param-value>
                 add
+            </param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>deletePossibility</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.PossibilitiesServlet</servlet-class>
+
+        <init-param>
+            <param-name>page</param-name>
+            <param-value>
+                delete
+            </param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Categories</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.CategoriesServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>addCategory</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.CategoriesServlet</servlet-class>
+
+        <init-param>
+            <param-name>page</param-name>
+            <param-value>
+                add
+            </param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>deleteCategory</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.CategoriesServlet</servlet-class>
+
+        <init-param>
+            <param-name>page</param-name>
+            <param-value>
+                delete
             </param-value>
         </init-param>
     </servlet>
@@ -112,13 +153,13 @@
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>Categories</servlet-name>
-        <url-pattern>/categories/list/</url-pattern>
+        <servlet-name>Questions</servlet-name>
+        <url-pattern>/questions/list/</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>addCategory</servlet-name>
-        <url-pattern>/categories/add/</url-pattern>
+        <servlet-name>addQuestion</servlet-name>
+        <url-pattern>/questions/add/</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -129,6 +170,26 @@
     <servlet-mapping>
         <servlet-name>addPossibility</servlet-name>
         <url-pattern>/possibilities/add/</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>deletePossibility</servlet-name>
+        <url-pattern>/possibilities/delete/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Categories</servlet-name>
+        <url-pattern>/categories/list/</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>addCategory</servlet-name>
+        <url-pattern>/categories/add/</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>deleteCategory</servlet-name>
+        <url-pattern>/categories/delete/*</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>

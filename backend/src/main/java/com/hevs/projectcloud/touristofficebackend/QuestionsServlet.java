@@ -74,21 +74,32 @@ public class QuestionsServlet extends HttpServlet {
                     req.getParameter("titleFR")
             );
 
-            ofy().save().entity(description).now();
+
+            // Store related strings
+            Entity titleEntity = new Entity("Text");
+            titleEntity.setProperty("textEN", description.getTextEN());
+            titleEntity.setProperty("textFR", description.getTextFR());
+            titleEntity.setProperty("textDE", description.getTextDE());
+
+            datastore.put(titleEntity);
+
+            //ofy().save().entity(description).now();
+
 
             // get the categorie to add to the DB
             String catid = req.getParameter("cat");
 
             Category cat = ofy().load().type(Category.class).id(catid).now();
 
-            Entity question = new Entity("Questionnaires");
+            Entity question = new Entity("Questions");
             question.setProperty("category", cat);
-            question.setProperty("description",description);
+            question.setProperty("description", description);
 
-            ofy().save().entity(question).now();
+            datastore.put(question);
+            //ofy().save().entity(question).now();
 
 
-            resp.sendRedirect("/questionnaires/list/");
+            resp.sendRedirect("/questionnaires");
         } catch (IOException e) {
             e.printStackTrace();
         }
