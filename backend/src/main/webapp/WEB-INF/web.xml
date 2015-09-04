@@ -191,6 +191,11 @@
         </init-param>
     </servlet>
 
+    <servlet>
+        <servlet-name>Feedback</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.FeedbackServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>Questionnaires</servlet-name>
         <url-pattern>/questionnaires/list/</url-pattern>
@@ -269,6 +274,11 @@
     <servlet-mapping>
         <servlet-name>deleteActivity</servlet-name>
         <url-pattern>/activities/delete/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Feedback</servlet-name>
+        <url-pattern>/feedback/list/</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>

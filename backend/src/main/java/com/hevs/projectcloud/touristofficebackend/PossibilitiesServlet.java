@@ -14,6 +14,7 @@ import com.hevs.projectcloud.touristofficebackend.models.Question;
 import com.hevs.projectcloud.touristofficebackend.models.Text;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -101,13 +102,11 @@ public class PossibilitiesServlet extends HttpServlet
                     //get the object question
                     // add the possibility to a list
                     // save the question with the list
-                    String questid = req.getParameter("questions");
-                    Question quest = ofy().load().type(Question.class).id(Long.parseLong(questid)).now();
+                    Long questid = Long.parseLong(req.getParameter("question"));
+                    Question quest = ofy().load().type(Question.class).id(questid).now();
 
-                    List<Possibility> listPo = null;
+                    quest.addPossibility(possibility);
 
-                    listPo.add(possibility);
-                    quest.setPossibilities(listPo);
                     ofy().save().entity(quest).now();
 
 
