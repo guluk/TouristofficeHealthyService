@@ -163,6 +163,18 @@
     </servlet>
 
     <servlet>
+        <servlet-name>modifyCategory</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.CategoriesServlet</servlet-class>
+
+        <init-param>
+            <param-name>page</param-name>
+            <param-value>
+                modify
+            </param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
         <servlet-name>Activities</servlet-name>
         <servlet-class>com.hevs.projectcloud.touristofficebackend.ActivitiesServlet</servlet-class>
     </servlet>
@@ -259,6 +271,11 @@
     <servlet-mapping>
         <servlet-name>deleteCategory</servlet-name>
         <url-pattern>/categories/delete/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>modifyCategory</servlet-name>
+        <url-pattern>/categories/modify/*</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
