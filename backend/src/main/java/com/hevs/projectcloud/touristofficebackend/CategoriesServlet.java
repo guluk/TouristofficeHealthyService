@@ -68,24 +68,28 @@ public class CategoriesServlet extends HttpServlet {
             Text title = new Text();
             title.setText(
                 req.getParameter("titleEN"),
-                req.getParameter("titleDE"),
-                req.getParameter("titleFR")
+                    req.getParameter("titleFR"),
+                req.getParameter("titleDE")
+
             );
 
 
             // Store related strings
             Entity titleEntity = new Entity("Text");
+            titleEntity.setProperty("textEN", title.getTextEN());
             titleEntity.setProperty("textFR", title.getTextFR());
             titleEntity.setProperty("textDE", title.getTextDE());
-            titleEntity.setProperty("textEN", title.getTextEN());
+
             datastore.put(titleEntity);
 
 
             // Store a category
            Entity category = new Entity("Categories");
+            category.setProperty("titleEN", title.getTextEN());
+            category.setProperty("titleFR", title.getTextFR());
             category.setProperty("titleDE", title.getTextDE());
-            category.setProperty("titleFR", title.getTextEN());
-            category.setProperty("titleEN", title.getTextFR());
+
+
 
 
             datastore.put(category);

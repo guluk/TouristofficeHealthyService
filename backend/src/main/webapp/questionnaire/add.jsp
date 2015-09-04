@@ -10,7 +10,7 @@
 
         <div class="row">
             <div class="col-md-6">
-                <form action="/categories/add/" method="post">
+                <form action="/questionnaires/add/" method="post">
                     <div class="form-group">
                         <label for="titleFR">Question FR</label>
                         <input name="titleFR" type="text" class="form-control">
@@ -31,17 +31,10 @@
         <%
         List<Entity> categories = (List<Entity>) request.getAttribute("categories");
         for (Entity category : categories) {
-
         %>
-        <option value="<%=category.getProperty("id")%>"><%=category.getProperty("title")%></option>
-
-        <%
-        }
-        %>
-
+        <option value="<%=category.getProperty("id")%>"><%=category.getProperty("titleEN")%></option>$
+        <% } %>
                            </select>
-
-
                       </div>
                     <button type="submit" class="btn btn-primary">Add question</button>
                 </form>
