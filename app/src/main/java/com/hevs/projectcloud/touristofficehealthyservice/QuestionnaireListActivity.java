@@ -8,7 +8,7 @@ import android.view.MenuInflater;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.hevs.projectcloud.touristofficebackend.questionnaires.model.Questionnaire;
+import com.hevs.projectcloud.touristofficebackend.tohsaService.model.Questionnaire;
 
 import java.util.ArrayList;
 
