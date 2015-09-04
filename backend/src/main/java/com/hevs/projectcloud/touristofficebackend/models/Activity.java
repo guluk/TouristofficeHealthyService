@@ -13,7 +13,7 @@ public class Activity {
     @Id
     private Long id;
 
-    private String name;
+    private Text name;
 
     public Activity() { }
 
@@ -21,11 +21,11 @@ public class Activity {
         return this.id;
     }
 
-    public String getName() {
+    public Text getName() {
         return this.name;
     }
 
-    public void setName(String name) {
+    public void setName(Text name) {
         this.name = name;
     }
 }
