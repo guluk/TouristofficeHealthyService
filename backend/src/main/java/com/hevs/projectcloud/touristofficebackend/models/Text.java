@@ -12,7 +12,6 @@ import com.googlecode.objectify.annotation.Id;
 public class Text {
 
     @Id
-
     private Long id;
 
     private String textEN;
