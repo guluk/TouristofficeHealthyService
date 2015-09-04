@@ -24,6 +24,12 @@ import static com.hevs.projectcloud.touristofficebackend.OfyService.ofy;
  */
 public class QuestionsServlet extends HttpServlet {
 
+    Long questionId;
+    Text description;
+    Question question;
+    Category cat;
+    String catid;
+
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         Query query;
@@ -45,10 +51,17 @@ public class QuestionsServlet extends HttpServlet {
                     case "add":
                         this.getServletContext().getRequestDispatcher("/question/add.jsp").forward(req, resp);
                         break;
+                    case "modify":
+                        questionId = Long.parseLong(req.getParameter("id"));
+                        Question questionmodify = ofy().load().type(Question.class).id(questionId).now();
+                        req.setAttribute("questionmodify", questionmodify);
+
+                        this.getServletContext().getRequestDispatcher("/question/modify.jsp").forward(req, resp);
+                        break;
                     case "delete":
                         // Load entity to delete
-                        Long questionId = Long.parseLong(req.getParameter("id"));
-                        Question question = ofy().load().type(Question.class).id(questionId).now();
+                        questionId = Long.parseLong(req.getParameter("id"));
+                        question = ofy().load().type(Question.class).id(questionId).now();
 
                         // Delete entity if exists
                         if (question != null) {
@@ -73,34 +86,63 @@ public class QuestionsServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try {
+            switch (this.getInitParameter("page")) {
+                case "add":
 
-           DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+                    description = new Text();
+                    description.setText(
+                            req.getParameter("titleEN"),
+                            req.getParameter("titleDE"),
+                            req.getParameter("titleFR")
+                    );
 
-
-            Text description = new Text();
-            description.setText(
-                    req.getParameter("titleEN"),
-                    req.getParameter("titleDE"),
-                    req.getParameter("titleFR")
-            );
-
-            ofy().save().entity(description).now();
-
-
-            // get the categorie to add to the question
-            String catid = req.getParameter("cat");
-            Category cat = ofy().load().type(Category.class).id(Long.parseLong(catid)).now();
+                    ofy().save().entity(description).now();
 
 
-            //save the question with properties
-            Question question = new Question();
-            question.setCategory(cat);
-            question.setDescription(description);
+                    // get the categorie to add to the question
+                    catid = req.getParameter("cat");
+                    cat = ofy().load().type(Category.class).id(Long.parseLong(catid)).now();
 
 
-            ofy().save().entity(question).now();
+                    //save the question with properties
+                    question = new Question();
+                    question.setCategory(cat);
+                    question.setDescription(description);
 
 
+                    ofy().save().entity(question).now();
+                break;
+
+                case "modify":
+                    questionId = Long.parseLong(req.getParameter("id"));
+                    question = ofy().load().type(Question.class).id(questionId).now();
+
+                    description = new Text();
+                    description.setText(
+                            req.getParameter("titleEN"),
+                            req.getParameter("titleDE"),
+                            req.getParameter("titleFR")
+                    );
+
+                    ofy().save().entity(description).now();
+
+                    // get the categorie to add to the question
+                    catid = req.getParameter("cat");
+                    cat = ofy().load().type(Category.class).id(Long.parseLong(catid)).now();
+
+
+                    //save the question with properties
+                    question.setCategory(cat);
+                    question.setDescription(description);
+
+
+                    ofy().save().entity(question).now();
+
+
+                    break;
+
+
+            }
             resp.sendRedirect("/questions/list/");
         } catch (IOException e) {
             e.printStackTrace();

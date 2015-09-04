@@ -18,6 +18,10 @@ import static com.hevs.projectcloud.touristofficebackend.OfyService.ofy;
  */
 public class ActivitiesServlet extends HttpServlet
 {
+    Long activityId;
+    Activity activity;
+    Text title;
+
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
     {
         try {
@@ -30,10 +34,17 @@ public class ActivitiesServlet extends HttpServlet
                     case "add":
                         this.getServletContext().getRequestDispatcher("/activity/add.jsp").forward(req, resp);
                         break;
+                    case "modify":
+                        activityId = Long.parseLong(req.getParameter("id"));
+                        Activity activitymodify = ofy().load().type(Activity.class).id(activityId).now();
+                        req.setAttribute("activitymodify", activitymodify);
+
+                        this.getServletContext().getRequestDispatcher("/activity/modify.jsp").forward(req, resp);
+                        break;
                     case "delete":
                         // Load entity to delete
-                        Long activityId = Long.parseLong(req.getParameter("id"));
-                        Activity activity = ofy().load().type(Activity.class).id(activityId).now();
+                        activityId = Long.parseLong(req.getParameter("id"));
+                        activity = ofy().load().type(Activity.class).id(activityId).now();
 
                         // Delete entity if exists
                         if (activity != null) {
@@ -59,7 +70,7 @@ public class ActivitiesServlet extends HttpServlet
         try {
             switch (this.getInitParameter("page")) {
                 case "add":
-                    Activity activity = new Activity();
+                    activity = new Activity();
 
                     // Prepare descriptions
                     Text name = new Text();
@@ -77,6 +88,27 @@ public class ActivitiesServlet extends HttpServlet
 
                     // Save entity
                     ofy().save().entity(activity).now();
+                    break;
+                case "modify":
+
+                    activityId = Long.parseLong(req.getParameter("id"));
+                    activity = ofy().load().type(Activity.class).id(activityId).now();
+
+                    title = new Text();
+                    title.setText(
+                            req.getParameter("titleEN"),
+                            req.getParameter("titleFR"),
+                            req.getParameter("titleDE")
+                    );
+                    // Save description
+                    ofy().save().entity(title).now();
+
+                    // Create data for object activity
+                    activity.setName(title);
+
+                    // Save entity
+                    ofy().save().entity(activity).now();
+
                     break;
             }
             resp.sendRedirect("/activities/list/");

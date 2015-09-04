@@ -36,6 +36,10 @@
                                     <span class="glyphicon glyphicon-trash"></span>
                                     Delete
                                 </a>
+                                <a class="btn btn-primary btn-sm" href="/activities/modify/?id=<%= activity.getActivityId() %>">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                    Modify
+                                </a>
                             </td>
                         </tr>
                     <%

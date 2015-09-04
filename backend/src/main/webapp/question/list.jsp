@@ -40,6 +40,10 @@
                                     <span class="glyphicon glyphicon-trash"></span>
                                     Delete
                                 </a>
+                                <a class="btn btn-primary btn-sm" href="/questions/modify/?id=<%= question.getQuestionId() %>">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                    Modify
+                                </a>
                             </td>
                         </tr>
                     <%
