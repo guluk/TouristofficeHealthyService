@@ -17,7 +17,7 @@
     for (Entity category : categories) {
     %>
         <p>
-        Title: <strong><%= category.getProperty("title") %></strong>
+        TitleEN: <strong><%= category.getProperty("titleEN") %></strong>
         </p>
     <%
     }
