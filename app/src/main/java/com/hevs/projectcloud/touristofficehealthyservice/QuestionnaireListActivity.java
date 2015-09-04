@@ -82,7 +82,6 @@ public class QuestionnaireListActivity extends ListActivity
      * Retrieves questionnaires from API
      */
     final QuestionnaireCollection retrieveQuestionnaires() {
-        //new ListOfOffersAsyncRetriever().execute(currentPlace);
 
         QuestionnaireCollection result;
 

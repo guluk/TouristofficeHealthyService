@@ -14,8 +14,8 @@ android {
          * "http://10.0.2.2:8080/_ah/api/"
          */
         buildConfigField "String", "ROOT_URL",
-                //"\"http://localhost:8080/_ah/api/\""
-                "\"http://touristofficehealthyservice.appspot.com:8080/_ah/api/\""
+                "\"http://0.0.0.0:8080/_ah/api/\""
+                //"\"http://touristofficehealthyservice.appspot.com:8080/_ah/api/\""
         // The IP ADDRESS of your SERVER. Yours may be different.
         /**
          * Defines whether authentication is required or not. Only works once
