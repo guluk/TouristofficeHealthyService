@@ -32,7 +32,7 @@
                 if (questionnaires.size() > 0) {
                     for (Questionnaire questionnaire : questionnaires) {
                     %>
-                        <tr onClick="location.href=('questionnaires/view/?id=<%= questionnaire.getQuestionnaireId() %>');">
+                        <tr onClick="location.href=('/questionnaires/view/?id=<%= questionnaire.getQuestionnaireId() %>');">
                             <td><%= questionnaire.getQuestionnaireId() %></td>
                             <td><%= questionnaire.getCredentials() %></td>
                             <td><%= questionnaire.getPhoneNumber() %></td>

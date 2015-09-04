@@ -11,7 +11,7 @@
 
     <div class="row">
         <div class="col-md-6">
-            <form action="/questionnaires/add/" method="post">
+            <form action="/questions/add/" method="post">
                 <div class="form-group">
                     <label for="titleFR">Question FR</label>
                     <input name="titleFR" type="text" class="form-control">

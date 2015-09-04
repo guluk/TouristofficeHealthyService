@@ -1,5 +1,6 @@
 package com.hevs.projectcloud.touristofficebackend;
 
+import com.hevs.projectcloud.touristofficebackend.models.Category;
 import com.hevs.projectcloud.touristofficebackend.models.Questionnaire;
 
 import java.io.IOException;
@@ -17,6 +18,9 @@ public class QuestionnairesServlet extends HttpServlet
 {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
     {
+        Long questionnaireId;
+        Questionnaire questionnaire;
+
         try {
             List<Questionnaire> questionnaires = ofy().load().type(Questionnaire.class).list();  // Result is async
             req.setAttribute("questionnaires", questionnaires);
@@ -24,13 +28,25 @@ public class QuestionnairesServlet extends HttpServlet
             // Check if a specific page has been requested and redirect
             if (this.getInitParameter("page") != null) {
                 switch (this.getInitParameter("page")) {
+                    case "view":
+                        // Prepare questionnaire
+                        questionnaireId = Long.parseLong(req.getParameter("id"));
+                        questionnaire = ofy().load().type(Questionnaire.class).id(questionnaireId).now();
+                        req.setAttribute("questionnaire", questionnaire);
+
+                        // Prepare list of available categories
+                        List<Category> categories = ofy().load().type(Category.class).list();
+                        req.setAttribute("categories", categories);
+
+                        this.getServletContext().getRequestDispatcher("/questionnaire/view.jsp").forward(req, resp);
+                        break;
                     case "add":
                         this.getServletContext().getRequestDispatcher("/questionnaire/add.jsp").forward(req, resp);
                         break;
                     case "delete":
                         // Load entity to delete
-                        Long questionnaireId = Long.parseLong(req.getParameter("id"));
-                        Questionnaire questionnaire = ofy().load().type(Questionnaire.class).id(questionnaireId).now();
+                        questionnaireId = Long.parseLong(req.getParameter("id"));
+                        questionnaire = ofy().load().type(Questionnaire.class).id(questionnaireId).now();
 
                         // Delete entity if exists
                         if (questionnaire != null) {
