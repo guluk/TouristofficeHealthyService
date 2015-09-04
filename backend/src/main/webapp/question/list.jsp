@@ -2,6 +2,7 @@
 <%@ page import="com.google.appengine.api.datastore.*" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.hevs.projectcloud.touristofficebackend.models.Question" %>
+<%@ page import="com.hevs.projectcloud.touristofficebackend.models.Category" %>
 
 <%@include file="/header.jsp" %>
 
@@ -25,17 +26,17 @@
             </thead>
             <tbody>
                 <%
-                List<Question> questions = (List<Question>) request.getAttribute("questionnaires");
+                List<Question> questions = (List<Question>) request.getAttribute("questions");
                 if (questions.size() > 0) {
                     for (Question question : questions) {
                     %>
                         <tr>
-                            <td><%= question.getDescription() %></td>
-                            <td><%= %></td>
-                            <td><%= possibility.getDescription().getText("en") %></td>
-                            <td><%= possibility.getPoints() %></td>
+                            <td><%= question.getQuestionId() %></td>
+                            <td><%= question.getCategory().getTitle().getText("en") %></td>
+                            <td><%= question.getDescription().getText("en") %></td>
+
                             <td>
-                                <a class="btn btn-danger btn-xs" href="/questions/delete/?id=<%= question.getPossibilityId() %>">
+                                <a class="btn btn-danger btn-xs" href="/questions/delete/?id=<%= question.getQuestionId() %>">
                                     <span class="glyphicon glyphicon-trash"></span>
                                     Delete
                                 </a>

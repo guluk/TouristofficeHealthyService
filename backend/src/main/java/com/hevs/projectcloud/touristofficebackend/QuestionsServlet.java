@@ -32,9 +32,8 @@ public class QuestionsServlet extends HttpServlet {
             DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
              // Demande toutes les categories tries
-            query = new Query("Questionnaires");
-            List<Entity> questionnaires = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
-            req.setAttribute("questionnaires", questionnaires);
+            List<Question> questions = ofy().load().type(Question.class).list();  // Result is async
+            req.setAttribute("questions", questions);
 
             List<Category> categories = ofy().load().type(Category.class).list();  // Result is async
             req.setAttribute("categories", categories);
@@ -79,10 +78,7 @@ public class QuestionsServlet extends HttpServlet {
 
             // get the categorie to add to the question
             String catid = req.getParameter("cat");
-            System.out.println(catid);
-
-            Category cat = ofy().load().type(Category.class).id(catid).now();
-            System.out.println(cat.getCategoryId() + " " + cat.getTitle());
+            Category cat = ofy().load().type(Category.class).id(Long.parseLong(catid)).now();
 
 
             //save the question with properties
