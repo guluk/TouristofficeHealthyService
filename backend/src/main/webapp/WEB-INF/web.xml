@@ -35,29 +35,30 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>TouristofficeHealthyService</servlet-name>
-        <servlet-class>com.hevs.projectcloud.touristofficebackend.TouristOfficeServlet</servlet-class>
-        <init-param>
-            <param-name>data</param-name>
-            <param-value>
-                questionnaires
-            </param-value>
-        </init-param>
-    </servlet>
-
-    <servlet>
         <servlet-name>Questionnaires</servlet-name>
-        <servlet-class>com.hevs.projectcloud.touristofficebackend.QuestionsServlet</servlet-class>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.QuestionnairesServlet</servlet-class>
     </servlet>
 
     <servlet>
-        <servlet-name>addQuestionnaires</servlet-name>
-        <servlet-class>com.hevs.projectcloud.touristofficebackend.QuestionsServlet</servlet-class>
+        <servlet-name>addQuestionnaire</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.QuestionnairesServlet</servlet-class>
 
         <init-param>
             <param-name>page</param-name>
             <param-value>
                 add
+            </param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>deleteQuestionnaire</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.QuestionnairesServlet</servlet-class>
+
+        <init-param>
+            <param-name>page</param-name>
+            <param-value>
+                delete
             </param-value>
         </init-param>
     </servlet>
@@ -138,18 +139,18 @@
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>TouristofficeHealthyService</servlet-name>
-        <url-pattern>/questionnaires/*</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
         <servlet-name>Questionnaires</servlet-name>
         <url-pattern>/questionnaires/list/</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>addQuestionnaires</servlet-name>
+        <servlet-name>addQuestionnaire</servlet-name>
         <url-pattern>/questionnaires/add/</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>deleteQuestionnaire</servlet-name>
+        <url-pattern>/questionnaires/delete/*</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

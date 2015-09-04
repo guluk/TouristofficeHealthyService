@@ -25,15 +25,11 @@ import static com.hevs.projectcloud.touristofficebackend.OfyService.ofy;
 /**
  * Created by samuel on 9/2/15.
  */
-public class PossibilitiesServlet extends HttpServlet {
-
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-
-        Query query;
-
+public class PossibilitiesServlet extends HttpServlet
+{
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
+    {
         try {
-            DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
             List<Possibility> possibilities = ofy().load().type(Possibility.class).list();  // Result is async
             req.setAttribute("possibilities", possibilities);
 
