@@ -46,10 +46,10 @@ public class QuestionsServlet extends HttpServlet {
                         this.getServletContext().getRequestDispatcher("/question/add.jsp").forward(req, resp);
                         break;
                     default:
-                        this.getServletContext().getRequestDispatcher("/question/questions.jsp").forward(req, resp);
+                        this.getServletContext().getRequestDispatcher("/question/list.jsp").forward(req, resp);
                 }
             } else {
-                this.getServletContext().getRequestDispatcher("/question/questions.jsp").forward(req, resp);
+                this.getServletContext().getRequestDispatcher("/question/list.jsp").forward(req, resp);
             }
         } catch (ServletException e) {
             e.printStackTrace();

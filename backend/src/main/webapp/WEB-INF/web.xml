@@ -144,6 +144,11 @@
     </servlet-mapping>
 
     <servlet-mapping>
+        <servlet-name>Questionnaires</servlet-name>
+        <url-pattern>/questionnaires/view/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
         <servlet-name>addQuestionnaire</servlet-name>
         <url-pattern>/questionnaires/add/</url-pattern>
     </servlet-mapping>

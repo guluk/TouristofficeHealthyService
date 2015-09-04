@@ -1,11 +1,5 @@
 package com.hevs.projectcloud.touristofficebackend;
 
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.FetchOptions;
-import com.google.appengine.api.datastore.Query;
-import com.hevs.projectcloud.touristofficebackend.apis.CategoryEndpoint;
 import com.hevs.projectcloud.touristofficebackend.models.Category;
 import com.hevs.projectcloud.touristofficebackend.models.Text;
 
@@ -25,31 +19,32 @@ import static com.hevs.projectcloud.touristofficebackend.OfyService.ofy;
 public class CategoriesServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-
-        Query query;
-        List<Entity> results;
-        List<Entity> resultsObjs;
-
         try {
-            DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+            List<Category> categories = ofy().load().type(Category.class).list();  // Result is async
+            req.setAttribute("categories", categories);
 
-             // Demande toutes les categories tries
-            query = new Query("Categories");
-            results = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
-
-            req.setAttribute("categories", results);
-
+            // Check if a specific page has been requested and redirect
             if (this.getInitParameter("page") != null) {
                 switch (this.getInitParameter("page")) {
                     case "add":
                         this.getServletContext().getRequestDispatcher("/category/add.jsp").forward(req, resp);
                         break;
-                    default:
+                    case "delete":
+                        // Load entity to delete
+                        Long categoryId = Long.parseLong(req.getParameter("id"));
+                        Category category = ofy().load().type(Category.class).id(categoryId).now();
+
+                        // Delete entity if exists
+                        if (category != null) {
+                            ofy().delete().entity(category).now();
+                        }
                         this.getServletContext().getRequestDispatcher("/category/list.jsp").forward(req, resp);
+                        break;
                 }
             } else {
                 this.getServletContext().getRequestDispatcher("/category/list.jsp").forward(req, resp);
             }
+
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -61,37 +56,27 @@ public class CategoriesServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try {
+            switch (this.getInitParameter("page")) {
+                case "add":
+                    Category category = new Category();
 
-           DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+                    // Prepare descriptions
+                    Text title = new Text();
+                    title.setText(
+                        req.getParameter("titleEN"),
+                        req.getParameter("titleFR"),
+                        req.getParameter("titleDE")
+                    );
+                    // Save description
+                    ofy().save().entity(title).now();
 
+                    // Create data for object category
+                    category.setTitle(title);
 
-            Text title = new Text();
-            title.setText(
-                req.getParameter("titleEN"),
-                    req.getParameter("titleFR"),
-                req.getParameter("titleDE")
-
-            );
-
-
-            // Store related strings
-            Entity titleEntity = new Entity("Text");
-            titleEntity.setProperty("textEN", title.getTextEN());
-            titleEntity.setProperty("textFR", title.getTextFR());
-            titleEntity.setProperty("textDE", title.getTextDE());
-
-            datastore.put(titleEntity);
-
-
-            // Store a category
-           Entity category = new Entity("Categories");
-            category.setProperty("titleEN", title.getTextEN());
-            category.setProperty("titleFR", title.getTextFR());
-            category.setProperty("titleDE", title.getTextDE());
-
-            datastore.put(category);
-
-
+                    // Save entity
+                    ofy().save().entity(category).now();
+                    break;
+            }
             resp.sendRedirect("/categories/list/");
         } catch (IOException e) {
             e.printStackTrace();

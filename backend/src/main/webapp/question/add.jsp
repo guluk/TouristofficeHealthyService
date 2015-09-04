@@ -25,10 +25,9 @@
                      <input name="titleEN" type="text" class="form-control">
                  </div>
 
-                /*list for categories
                 <div class="form-group">
-                    Categories
-                    <select name="cat">
+                    <label for="cat">Category</label>
+                    <select name="cat" class="form-control">
                         <%
                         List<Category> categories = (List<Category>) request.getAttribute("categories");
                         for (Category category : categories) {
