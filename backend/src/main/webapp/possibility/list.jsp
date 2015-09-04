@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.google.appengine.api.datastore.*" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.hevs.projectcloud.touristofficebackend.models.Possibility" %>
 
 <%@include file="/header.jsp" %>
 
@@ -12,15 +13,30 @@
         </a>
     </h1>
 
-    <%
-    List<Entity> possibilities = (List<Entity>) request.getAttribute("possibilities");
-    for (Entity possibility : possibilities) {
-    %>
-        <p>
-        Title: <strong><%= possibility.getProperty("description") %></strong>
-        </p>
-    <%
-    }
-    %>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Description</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                List<Possibility> possibilities = (List<Possibility>) request.getAttribute("possibilities");
+                for (Possibility possibility : possibilities) {
+                %>
+                    <tr>
+                        <td><%= possibility.getPossibilityId() %></td>
+                        <td><%= possibility.getDescription().getText("en") %></td>
+                        <td><%= possibility.getPoints() %></td>
+                    </tr>
+                <%
+                }
+                %>
+            </tbody>
+        </table>
+    </div>
 
 <%@include file="/footer.html" %>
