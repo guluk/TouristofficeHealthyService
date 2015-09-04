@@ -7,6 +7,7 @@ import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Query;
 import com.hevs.projectcloud.touristofficebackend.models.Category;
 import com.hevs.projectcloud.touristofficebackend.models.Text;
+import com.hevs.projectcloud.touristofficebackend.models.Question;
 
 import java.io.IOException;
 import java.util.List;
@@ -73,33 +74,24 @@ public class QuestionsServlet extends HttpServlet {
                     req.getParameter("titleFR")
             );
 
-
-            // Store related strings
-            Entity titleEntity = new Entity("Text");
-            titleEntity.setProperty("textEN", description.getTextEN());
-            titleEntity.setProperty("textFR", description.getTextFR());
-            titleEntity.setProperty("textDE", description.getTextDE());
-
-            datastore.put(titleEntity);
-
-            //ofy().save().entity(description).now();
+            ofy().save().entity(description).now();
 
 
-            // get the categorie to add to the DB
+            // get the categorie to add to the question
             String catid = req.getParameter("cat");
             System.out.println(catid);
 
             Category cat = ofy().load().type(Category.class).id(catid).now();
             System.out.println(cat.getCategoryId() + " " + cat.getTitle());
 
-            Entity question = new Entity("Questions");
-            question.setProperty("category", cat.getCategoryId());
-            question.setProperty("descriptionEN", description.getTextEN());
-            question.setProperty("descriptionFR", description.getTextFR());
-            question.setProperty("descriptionDE", description.getTextDE());
 
-            datastore.put(question);
-            //ofy().save().entity(question).now();
+            //save the question with properties
+            Question question = new Question();
+            question.setCategory(cat);
+            question.setDescription(description);
+
+
+            ofy().save().entity(question).now();
 
 
             resp.sendRedirect("/questions/list/");
