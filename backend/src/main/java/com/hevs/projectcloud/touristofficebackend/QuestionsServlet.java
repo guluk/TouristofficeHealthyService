@@ -33,13 +33,12 @@ public class QuestionsServlet extends HttpServlet {
              // Demande toutes les categories tries
             query = new Query("Questionnaires");
             List<Entity> questionnaires = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
-
-            query = new Query("Categories");
-            List<Entity> categories = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
-
             req.setAttribute("questionnaires", questionnaires);
+
+            List<Category> categories = ofy().load().type(Category.class).list();  // Result is async
             req.setAttribute("categories", categories);
 
+            System.out.println(categories);
 
             if (this.getInitParameter("page") != null) {
                 switch (this.getInitParameter("page")) {

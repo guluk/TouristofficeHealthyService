@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.google.appengine.api.datastore.*" %>
+<%@ page import="com.hevs.projectcloud.touristofficebackend.models.Category" %>
 
 <%@include file="/header.jsp" %>
 
@@ -28,18 +29,17 @@
                 <div class="form-group">
                     Categories
                     <select name="cat">
-                    <%
-                    List<Entity> categories = (List<Entity>) request.getAttribute("categories");
-                    for (Entity category : categories) {
-                    %>
-                    <option value="<%=category.getProperty("id")%>"><%=category.getProperty("titleEN")%></option>$
-                    <% } %>
+                        <%
+                        List<Category> categories = (List<Category>) request.getAttribute("categories");
+                        for (Category category : categories) {
+                        %>
+                            <option value="<%= category.getCategoryId() %>"><%= category.getTitle().getText("en") %></option>
+                        <% } %>
                     </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add question</button>
                 </div>
+                <button type="submit" class="btn btn-primary">Add question</button>
             </form>
         </div>
     </div>
 
-<%@include file="/footer.jsp" %>
+<%@include file="/footer.html" %>
