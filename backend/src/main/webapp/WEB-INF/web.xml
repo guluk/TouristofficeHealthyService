@@ -150,6 +150,35 @@
         </init-param>
     </servlet>
 
+    <servlet>
+        <servlet-name>Activities</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.ActivitiesServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>addActivity</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.ActivitiesServlet</servlet-class>
+
+        <init-param>
+            <param-name>page</param-name>
+            <param-value>
+                add
+            </param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>deleteActivity</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.ActivitiesServlet</servlet-class>
+
+        <init-param>
+            <param-name>page</param-name>
+            <param-value>
+                delete
+            </param-value>
+        </init-param>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>Questionnaires</servlet-name>
         <url-pattern>/questionnaires/list/</url-pattern>
@@ -208,6 +237,21 @@
     <servlet-mapping>
         <servlet-name>deleteCategory</servlet-name>
         <url-pattern>/categories/delete/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Activities</servlet-name>
+        <url-pattern>/activities/list/</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>addActivity</servlet-name>
+        <url-pattern>/activities/add/</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>deleteActivity</servlet-name>
+        <url-pattern>/activities/delete/*</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
