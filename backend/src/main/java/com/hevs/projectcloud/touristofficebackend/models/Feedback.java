@@ -59,4 +59,11 @@ public class Feedback {
         return result;
     }
 
+    /**
+     * //LG/ Add another possibility to the feedback/question
+     */
+    public void addPossibility(Possibility possibility) {
+        this.possibilities.add(possibility);
+    }
+
 }
