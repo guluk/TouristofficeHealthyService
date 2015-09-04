@@ -89,9 +89,6 @@ public class CategoriesServlet extends HttpServlet {
             category.setProperty("titleFR", title.getTextFR());
             category.setProperty("titleDE", title.getTextDE());
 
-
-
-
             datastore.put(category);
 
 

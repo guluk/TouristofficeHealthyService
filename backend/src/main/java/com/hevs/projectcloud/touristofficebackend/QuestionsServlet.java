@@ -44,13 +44,13 @@ public class QuestionsServlet extends HttpServlet {
             if (this.getInitParameter("page") != null) {
                 switch (this.getInitParameter("page")) {
                     case "add":
-                        this.getServletContext().getRequestDispatcher("/questionnaire/add.jsp").forward(req, resp);
+                        this.getServletContext().getRequestDispatcher("/question/add.jsp").forward(req, resp);
                         break;
                     default:
-                        this.getServletContext().getRequestDispatcher("/questionnaire/list.jsp").forward(req, resp);
+                        this.getServletContext().getRequestDispatcher("/question/questions.jsp").forward(req, resp);
                 }
             } else {
-                this.getServletContext().getRequestDispatcher("/questionnaire/list.jsp").forward(req, resp);
+                this.getServletContext().getRequestDispatcher("/question/questions.jsp").forward(req, resp);
             }
         } catch (ServletException e) {
             e.printStackTrace();
@@ -88,18 +88,22 @@ public class QuestionsServlet extends HttpServlet {
 
             // get the categorie to add to the DB
             String catid = req.getParameter("cat");
+            System.out.println(catid);
 
             Category cat = ofy().load().type(Category.class).id(catid).now();
+            System.out.println(cat.getCategoryId() + " " + cat.getTitle());
 
             Entity question = new Entity("Questions");
-            question.setProperty("category", cat);
-            question.setProperty("description", description);
+            question.setProperty("category", cat.getCategoryId());
+            question.setProperty("descriptionEN", description.getTextEN());
+            question.setProperty("descriptionFR", description.getTextFR());
+            question.setProperty("descriptionDE", description.getTextDE());
 
             datastore.put(question);
             //ofy().save().entity(question).now();
 
 
-            resp.sendRedirect("/questionnaires");
+            resp.sendRedirect("/questions/list/");
         } catch (IOException e) {
             e.printStackTrace();
         }

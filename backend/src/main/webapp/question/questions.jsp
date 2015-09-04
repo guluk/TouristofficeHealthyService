@@ -6,18 +6,18 @@
 
     <h1>
         Categories
-        <a class="btn btn-primary btn-sm" href="/categories/add/">
+        <a class="btn btn-primary btn-sm" href="/questionnaires/add/">
             <span class="glyphicon glyphicon-plus"></span>
-            Add Category
+            Add Question
         </a>
     </h1>
 
     <%
-    List<Entity> categories = (List<Entity>) request.getAttribute("categories");
-    for (Entity category : categories) {
+    List<Entity> questions = (List<Entity>) request.getAttribute("questionnaires");
+    for (Entity questions : questions) {
     %>
         <p>
-        TitleEN: <strong><%= category.getProperty("titleEN") %></strong>
+        TitleEN: <strong><%= questions.getProperty("descriptionEN") %></strong>
 
         </p>
     <%
