@@ -96,6 +96,18 @@
         </init-param>
     </servlet>
 
+    <servlet>
+        <servlet-name>deletePossibility</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.PossibilitiesServlet</servlet-class>
+
+        <init-param>
+            <param-name>page</param-name>
+            <param-value>
+                delete
+            </param-value>
+        </init-param>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>TouristofficeHealthyService</servlet-name>
         <url-pattern>/questionnaires/*</url-pattern>
@@ -129,6 +141,11 @@
     <servlet-mapping>
         <servlet-name>addPossibility</servlet-name>
         <url-pattern>/possibilities/add/</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>deletePossibility</servlet-name>
+        <url-pattern>/possibilities/delete/*</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>

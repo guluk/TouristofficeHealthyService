@@ -43,12 +43,22 @@ public class PossibilitiesServlet extends HttpServlet {
                     case "add":
                         this.getServletContext().getRequestDispatcher("/possibility/add.jsp").forward(req, resp);
                         break;
-                    default:
+                    case "delete":
+                        // Load entity to delete
+                        Long possibilityId = Long.parseLong(req.getParameter("id"));
+                        Possibility possibility = ofy().load().type(Possibility.class).id(possibilityId).now();
+
+                        // Delete entity if exists
+                        if (possibility != null) {
+                            ofy().delete().entity(possibility).now();
+                        }
                         this.getServletContext().getRequestDispatcher("/possibility/list.jsp").forward(req, resp);
+                        break;
                 }
             } else {
                 this.getServletContext().getRequestDispatcher("/possibility/list.jsp").forward(req, resp);
             }
+
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -60,25 +70,29 @@ public class PossibilitiesServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try {
-            Possibility possibility = new Possibility();
+            switch (this.getInitParameter("page")) {
+                case "add":
+                    Possibility possibility = new Possibility();
 
-            // Prepare descriptions
-            Text description = new Text();
-            description.setText(
-                req.getParameter("descriptionEN"),
-                req.getParameter("descriptionDE"),
-                req.getParameter("descriptionFR")
-            );
+                    // Prepare descriptions
+                    Text description = new Text();
+                    description.setText(
+                            req.getParameter("descriptionEN"),
+                            req.getParameter("descriptionDE"),
+                            req.getParameter("descriptionFR")
+                    );
 
-            // Save description
-            ofy().save().entity(description).now();
+                    // Save description
+                    ofy().save().entity(description).now();
 
-            // Create data for object possibility
-            possibility.setDescription(description);
-            possibility.setPoints(Integer.parseInt(req.getParameter("points")));
+                    // Create data for object possibility
+                    possibility.setDescription(description);
+                    possibility.setPoints(Integer.parseInt(req.getParameter("points")));
 
-            // Save and redirect
-            ofy().save().entity(possibility).now();
+                    // Save entity
+                    ofy().save().entity(possibility).now();
+                    break;
+            }
             resp.sendRedirect("/possibilities/list/");
         } catch (IOException e) {
             e.printStackTrace();

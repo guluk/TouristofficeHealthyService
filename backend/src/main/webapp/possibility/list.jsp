@@ -20,17 +20,34 @@
                     <th>Id</th>
                     <th>Description</th>
                     <th>Points</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <%
                 List<Possibility> possibilities = (List<Possibility>) request.getAttribute("possibilities");
-                for (Possibility possibility : possibilities) {
+                if (possibilities.size() > 0) {
+                    for (Possibility possibility : possibilities) {
+                    %>
+                        <tr>
+                            <td><%= possibility.getPossibilityId() %></td>
+                            <td><%= possibility.getDescription().getText("en") %></td>
+                            <td><%= possibility.getPoints() %></td>
+                            <td>
+                                <a class="btn btn-danger btn-xs" href="/possibilities/delete/?id=<%= possibility.getPossibilityId() %>">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    <%
+                    }
+                } else {
                 %>
                     <tr>
-                        <td><%= possibility.getPossibilityId() %></td>
-                        <td><%= possibility.getDescription().getText("en") %></td>
-                        <td><%= possibility.getPoints() %></td>
+                        <td colspan="100" class="warning">
+                            No data here.
+                        </td>
                     </tr>
                 <%
                 }
