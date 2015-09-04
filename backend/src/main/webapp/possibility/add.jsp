@@ -1,4 +1,5 @@
 <%@ page import="java.util.List" %>
+<%@ page import="com.hevs.projectcloud.touristofficebackend.models.Question" %>
 
 <%@include file="/header.jsp" %>
 
@@ -25,6 +26,17 @@
                 <div class="form-group">
                     <label for="points">Points</label>
                     <input name="points" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="Question">Question</label>
+                    <select name="question" class="form-control">
+                        <%
+                        List<Question> questions = (List<Question>) request.getAttribute("questions");
+                        for (Question question : questions) {
+                        %>
+                            <option value="<%= question.getQuestionId() %>"><%= question.getDescription().getText("en") %></option>
+                        <% } %>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Add Possibility</button>
             </form>
