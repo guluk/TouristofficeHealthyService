@@ -40,6 +40,18 @@
     </servlet>
 
     <servlet>
+        <servlet-name>viewQuestionnaire</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.QuestionnairesServlet</servlet-class>
+
+        <init-param>
+            <param-name>page</param-name>
+            <param-value>
+                view
+            </param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
         <servlet-name>addQuestionnaire</servlet-name>
         <servlet-class>com.hevs.projectcloud.touristofficebackend.QuestionnairesServlet</servlet-class>
 
@@ -144,7 +156,7 @@
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>Questionnaires</servlet-name>
+        <servlet-name>viewQuestionnaire</servlet-name>
         <url-pattern>/questionnaires/view/*</url-pattern>
     </servlet-mapping>
 
