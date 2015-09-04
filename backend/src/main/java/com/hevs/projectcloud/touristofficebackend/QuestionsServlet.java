@@ -31,19 +31,30 @@ public class QuestionsServlet extends HttpServlet {
         try {
             DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-             // Demande toutes les categories tries
+            //ask for a list of all questions
             List<Question> questions = ofy().load().type(Question.class).list();  // Result is async
             req.setAttribute("questions", questions);
 
+            // Demande toutes les categories tries
             List<Category> categories = ofy().load().type(Category.class).list();  // Result is async
             req.setAttribute("categories", categories);
 
-            System.out.println(categories);
 
             if (this.getInitParameter("page") != null) {
                 switch (this.getInitParameter("page")) {
                     case "add":
                         this.getServletContext().getRequestDispatcher("/question/add.jsp").forward(req, resp);
+                        break;
+                    case "delete":
+                        // Load entity to delete
+                        Long questionId = Long.parseLong(req.getParameter("id"));
+                        Question question = ofy().load().type(Question.class).id(questionId).now();
+
+                        // Delete entity if exists
+                        if (question != null) {
+                            ofy().delete().entity(question).now();
+                        }
+                        this.getServletContext().getRequestDispatcher("/question/list.jsp").forward(req, resp);
                         break;
                     default:
                         this.getServletContext().getRequestDispatcher("/question/list.jsp").forward(req, resp);

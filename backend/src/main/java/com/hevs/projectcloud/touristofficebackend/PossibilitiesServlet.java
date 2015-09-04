@@ -10,10 +10,14 @@ import com.googlecode.objectify.LoadResult;
 import com.googlecode.objectify.cmd.LoadType;
 import com.hevs.projectcloud.touristofficebackend.models.Category;
 import com.hevs.projectcloud.touristofficebackend.models.Possibility;
+import com.hevs.projectcloud.touristofficebackend.models.Question;
 import com.hevs.projectcloud.touristofficebackend.models.Text;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -32,6 +36,10 @@ public class PossibilitiesServlet extends HttpServlet
         try {
             List<Possibility> possibilities = ofy().load().type(Possibility.class).list();  // Result is async
             req.setAttribute("possibilities", possibilities);
+
+            //ask for a list of all questions
+            List<Question> questions = ofy().load().type(Question.class).list();  // Result is async
+            req.setAttribute("questions", questions);
 
             // Check if a specific page has been requested and redirect
             if (this.getInitParameter("page") != null) {
@@ -81,12 +89,28 @@ public class PossibilitiesServlet extends HttpServlet
                     // Save description
                     ofy().save().entity(description).now();
 
+
                     // Create data for object possibility
                     possibility.setDescription(description);
                     possibility.setPoints(Integer.parseInt(req.getParameter("points")));
 
                     // Save entity
                     ofy().save().entity(possibility).now();
+
+
+                    //get the object question
+                    // add the possibility to a list
+                    // save the question with the list
+                    String questid = req.getParameter("questions");
+                    Question quest = ofy().load().type(Question.class).id(Long.parseLong(questid)).now();
+
+                    List<Possibility> listPo = null;
+
+                    listPo.add(possibility);
+                    quest.setPossibilities(listPo);
+                    ofy().save().entity(quest).now();
+
+
                     break;
             }
             resp.sendRedirect("/possibilities/list/");
