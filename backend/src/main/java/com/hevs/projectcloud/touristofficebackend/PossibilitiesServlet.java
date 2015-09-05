@@ -20,7 +20,7 @@ public class PossibilitiesServlet extends HttpServlet
     Possibility possibility;
     Text description;
     Question quest;
-    Long questid;
+    String questid;
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
     {
@@ -96,17 +96,15 @@ public class PossibilitiesServlet extends HttpServlet
                     // Save entity
                     ofy().save().entity(possibility).now();
 
-
                     //get the object question
                     // add the possibility to a list
                     // save the question with the list
-                    questid = Long.parseLong(req.getParameter("question"));
-                    quest = ofy().load().type(Question.class).id(questid).now();
-
-                    quest.addPossibility(possibility);
-
-                    ofy().save().entity(quest).now();
-
+                    questid = req.getParameter("question");
+                    if (questid != null) {
+                        quest = ofy().load().type(Question.class).id(Long.parseLong(questid)).now();
+                        quest.addPossibility(possibility);
+                        ofy().save().entity(quest).now();
+                    }
                     break;
                 case "modify":
                     possibilityId = Long.parseLong(req.getParameter("id"));
@@ -135,13 +133,12 @@ public class PossibilitiesServlet extends HttpServlet
                     //get the object question
                     // add the possibility to a list
                     // save the question with the list
-                    questid = Long.parseLong(req.getParameter("question"));
-                    quest = ofy().load().type(Question.class).id(questid).now();
+                    questid = req.getParameter("question");
+                    quest = ofy().load().type(Question.class).id(Long.parseLong(questid)).now();
 
                     quest.addPossibility(possibility);
 
                     ofy().save().entity(quest).now();
-
                     break;
             }
             resp.sendRedirect("/possibilities/list/");

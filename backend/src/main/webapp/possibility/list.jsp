@@ -6,6 +6,7 @@
 <%@include file="/header.jsp" %>
 
     <h1>
+        <span class="glyphicon glyphicon-tasks"></span>
         Possibilities
         <a class="btn btn-primary btn-sm" href="/possibilities/add/">
             <span class="glyphicon glyphicon-plus"></span>
@@ -38,7 +39,7 @@
                                     <span class="glyphicon glyphicon-trash"></span>
                                     Delete
                                 </a>
-                                <a class="btn btn-primary btn-sm" href="/possibilities/modify/?id=<%= possibility.getPossibilityId() %>">
+                                <a class="btn btn-primary btn-xs" href="/possibilities/modify/?id=<%= possibility.getPossibilityId() %>">
                                     <span class="glyphicon glyphicon-trash"></span>
                                     Modify
                                 </a>

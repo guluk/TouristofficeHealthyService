@@ -6,6 +6,7 @@
 <%@include file="/header.jsp" %>
 
     <h1>
+        <span class="glyphicon glyphicon-thumb-up"></span>
         Feedback
     </h1>
 

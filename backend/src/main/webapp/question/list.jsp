@@ -7,6 +7,7 @@
 <%@include file="/header.jsp" %>
 
     <h1>
+        <span class="glyphicon glyphicon-question-sign"></span>
         Questions
         <a class="btn btn-primary btn-sm" href="/questions/add/">
             <span class="glyphicon glyphicon-plus"></span>
@@ -32,7 +33,11 @@
                     %>
                         <tr>
                             <td><%= question.getQuestionId() %></td>
-                            <td><%= question.getCategory().getTitle().getText("en") %></td>
+                            <td>
+                                <% if (question.getCategory() != null) { %>
+                                    <%= question.getCategory().getTitle().getText("en") %>
+                                <% } %>
+                            </td>
                             <td><%= question.getDescription().getText("en") %></td>
 
                             <td>
@@ -40,7 +45,7 @@
                                     <span class="glyphicon glyphicon-trash"></span>
                                     Delete
                                 </a>
-                                <a class="btn btn-primary btn-sm" href="/questions/modify/?id=<%= question.getQuestionId() %>">
+                                <a class="btn btn-primary btn-xs" href="/questions/modify/?id=<%= question.getQuestionId() %>">
                                     <span class="glyphicon glyphicon-trash"></span>
                                     Modify
                                 </a>

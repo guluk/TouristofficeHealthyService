@@ -4,7 +4,7 @@
 
     <h1>
         <span class="glyphicon glyphicon-folder-open"></span>
-        Categories
+        Add Category
     </h1>
 
     <div class="row">

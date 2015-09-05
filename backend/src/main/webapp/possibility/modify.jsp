@@ -6,8 +6,8 @@
 <%@include file="/header.jsp" %>
 
     <h1>
-        <span class="glyphicon glyphicon-folder-open"></span>
-        Add Possibility
+        <span class="glyphicon glyphicon-tasks"></span>
+        Modify Possibility
     </h1>
 
     <div class="row">
@@ -21,19 +21,19 @@
                 </div>
                 <div class="form-group">
                     <label for="descriptionFR">Description FR</label>
-                    <input name="descriptionFR" type="text" class="form-control" value="<%= possibility.getDescription().getText("fr") %> ">
+                    <input name="descriptionFR" type="text" class="form-control" value="<%= possibility.getDescription().getText("fr") %>">
                 </div>
                 <div class="form-group">
                     <label for="descriptionDE">Description DE</label>
-                    <input name="descriptionDE" type="text" class="form-control" value="<%= possibility.getDescription().getText("de") %> ">
+                    <input name="descriptionDE" type="text" class="form-control" value="<%= possibility.getDescription().getText("de") %>">
                 </div>
                 <div class="form-group">
                     <label for="descriptionEN">Description EN</label>
-                    <input name="descriptionEN" type="text" class="form-control" value="<%= possibility.getDescription().getText("en") %> ">
+                    <input name="descriptionEN" type="text" class="form-control" value="<%= possibility.getDescription().getText("en") %>">
                 </div>
                 <div class="form-group">
                     <label for="points">Points</label>
-                    <input name="points" type="text" class="form-control">
+                    <input name="points" type="text" class="form-control" value="<%= possibility.getPoints() %> ">
                 </div>
                 <div class="form-group">
                     <label for="Question">Question</label>

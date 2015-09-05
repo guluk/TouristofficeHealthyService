@@ -7,8 +7,8 @@
 <%@include file="/header.jsp" %>
 
     <h1>
-        <span class="glyphicon glyphicon-folder-open"></span>
-        Questions
+        <span class="glyphicon glyphicon-question-sign"></span>
+        Modify Questions
     </h1>
 
     <div class="row">

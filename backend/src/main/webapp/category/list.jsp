@@ -6,9 +6,10 @@
 <%@include file="/header.jsp" %>
 
     <h1>
+        <span class="glyphicon glyphicon-folder-open"></span>
         Categories
         <a class="btn btn-primary btn-sm" href="/categories/add/">
-            <span class="glyphicon glyphicon-plus"></span>
+        <span class="glyphicon glyphicon-plus"></span>
             Add Category
         </a>
     </h1>
@@ -36,7 +37,7 @@
                                     <span class="glyphicon glyphicon-trash"></span>
                                     Delete
                                 </a>
-                                <a class="btn btn-primary btn-sm" href="/categories/modify/?id=<%= category.getCategoryId() %>">
+                                <a class="btn btn-primary btn-xs" href="/categories/modify/?id=<%= category.getCategoryId() %>">
                                     <span class="glyphicon glyphicon-trash"></span>
                                     Modify
                                 </a>

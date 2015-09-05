@@ -6,6 +6,7 @@
 <%@include file="/header.jsp" %>
 
     <h1>
+        <span class="glyphicon glyphicon-tree-conifer"></span>
         Activities
         <a class="btn btn-primary btn-sm" href="/activities/add/">
             <span class="glyphicon glyphicon-plus"></span>
@@ -36,7 +37,7 @@
                                     <span class="glyphicon glyphicon-trash"></span>
                                     Delete
                                 </a>
-                                <a class="btn btn-primary btn-sm" href="/activities/modify/?id=<%= activity.getActivityId() %>">
+                                <a class="btn btn-primary btn-xs" href="/activities/modify/?id=<%= activity.getActivityId() %>">
                                     <span class="glyphicon glyphicon-trash"></span>
                                     Modify
                                 </a>

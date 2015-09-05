@@ -96,9 +96,9 @@ public class ActivitiesServlet extends HttpServlet
 
                     title = new Text();
                     title.setText(
-                            req.getParameter("titleEN"),
-                            req.getParameter("titleFR"),
-                            req.getParameter("titleDE")
+                            req.getParameter("nameEN"),
+                            req.getParameter("nameFR"),
+                            req.getParameter("nameDE")
                     );
                     // Save description
                     ofy().save().entity(title).now();

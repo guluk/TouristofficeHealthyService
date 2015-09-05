@@ -4,7 +4,7 @@
 <%@include file="/header.jsp" %>
 
     <h1>
-        <span class="glyphicon glyphicon-folder-open"></span>
+        <span class="glyphicon glyphicon-tasks"></span>
         Add Possibility
     </h1>
 

@@ -95,20 +95,19 @@ public class QuestionsServlet extends HttpServlet {
                             req.getParameter("titleDE"),
                             req.getParameter("titleFR")
                     );
-
                     ofy().save().entity(description).now();
-
-
-                    // get the categorie to add to the question
-                    catid = req.getParameter("cat");
-                    cat = ofy().load().type(Category.class).id(Long.parseLong(catid)).now();
 
 
                     //save the question with properties
                     question = new Question();
-                    question.setCategory(cat);
-                    question.setDescription(description);
 
+                    // get the categorie to add to the question
+                    catid = req.getParameter("cat");
+                    if (catid != null) {
+                        cat = ofy().load().type(Category.class).id(Long.parseLong(catid)).now();
+                        question.setCategory(cat);
+                    }
+                    question.setDescription(description);
 
                     ofy().save().entity(question).now();
                 break;
