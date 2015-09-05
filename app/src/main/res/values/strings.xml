@@ -1,6 +1,6 @@
 <resources>
     <!-- General strings such as application and activity names -->
-    <string name="app_name">TouristofficeHealthyService</string>
+    <string name="app_name">TOHSA</string>
     <string name="activity_welcome_name">Getting started</string>
     <string name="activity_main_name">Home</string>
     <string name="activity_questionnaire_name">Questionnaires</string>

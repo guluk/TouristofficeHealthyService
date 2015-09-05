@@ -24,6 +24,10 @@ public class WelcomeActivity extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //LG/ Set default language to french
+        this.setLocale("fr");
+
         setContentView(R.layout.activity_welcome);
     }
 
