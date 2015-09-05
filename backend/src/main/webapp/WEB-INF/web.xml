@@ -105,6 +105,18 @@
     </servlet>
 
     <servlet>
+        <servlet-name>modifyQuestion</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.QuestionsServlet</servlet-class>
+
+        <init-param>
+            <param-name>page</param-name>
+            <param-value>
+                modify
+            </param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
         <servlet-name>Possibilities</servlet-name>
         <servlet-class>com.hevs.projectcloud.touristofficebackend.PossibilitiesServlet</servlet-class>
     </servlet>
@@ -129,6 +141,18 @@
             <param-name>page</param-name>
             <param-value>
                 delete
+            </param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>modifyPossibility</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.PossibilitiesServlet</servlet-class>
+
+        <init-param>
+            <param-name>page</param-name>
+            <param-value>
+                modify
             </param-value>
         </init-param>
     </servlet>
@@ -163,6 +187,18 @@
     </servlet>
 
     <servlet>
+        <servlet-name>modifyCategory</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.CategoriesServlet</servlet-class>
+
+        <init-param>
+            <param-name>page</param-name>
+            <param-value>
+                modify
+            </param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
         <servlet-name>Activities</servlet-name>
         <servlet-class>com.hevs.projectcloud.touristofficebackend.ActivitiesServlet</servlet-class>
     </servlet>
@@ -189,6 +225,23 @@
                 delete
             </param-value>
         </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>modifyActivity</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.ActivitiesServlet</servlet-class>
+
+        <init-param>
+            <param-name>page</param-name>
+            <param-value>
+                modify
+            </param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Feedback</servlet-name>
+        <servlet-class>com.hevs.projectcloud.touristofficebackend.FeedbackServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -227,6 +280,11 @@
     </servlet-mapping>
 
     <servlet-mapping>
+        <servlet-name>modifyQuestion</servlet-name>
+        <url-pattern>/questions/modify/</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
         <servlet-name>Possibilities</servlet-name>
         <url-pattern>/possibilities/list/</url-pattern>
     </servlet-mapping>
@@ -239,6 +297,11 @@
     <servlet-mapping>
         <servlet-name>deletePossibility</servlet-name>
         <url-pattern>/possibilities/delete/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>modifyPossibility</servlet-name>
+        <url-pattern>/possibilities/modify/*</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -257,6 +320,11 @@
     </servlet-mapping>
 
     <servlet-mapping>
+        <servlet-name>modifyCategory</servlet-name>
+        <url-pattern>/categories/modify/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
         <servlet-name>Activities</servlet-name>
         <url-pattern>/activities/list/</url-pattern>
     </servlet-mapping>
@@ -269,6 +337,16 @@
     <servlet-mapping>
         <servlet-name>deleteActivity</servlet-name>
         <url-pattern>/activities/delete/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>modifyActivity</servlet-name>
+        <url-pattern>/activities/modify/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Feedback</servlet-name>
+        <url-pattern>/feedback/list/</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>

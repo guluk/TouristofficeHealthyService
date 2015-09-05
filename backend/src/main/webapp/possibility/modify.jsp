@@ -1,31 +1,39 @@
 <%@ page import="java.util.List" %>
+<%@ page import="com.hevs.projectcloud.touristofficebackend.models.Possibility" %>
 <%@ page import="com.hevs.projectcloud.touristofficebackend.models.Question" %>
+
 
 <%@include file="/header.jsp" %>
 
     <h1>
         <span class="glyphicon glyphicon-tasks"></span>
-        Add Possibility
+        Modify Possibility
     </h1>
 
     <div class="row">
         <div class="col-md-6">
-            <form action="/possibilities/add/" method="post">
+        <%
+            Possibility possibility = (Possibility) request.getAttribute("possibilitymodify");
+        %>
+            <form action="/possibilities/modify/" method="post">
+                <div class="form-group">
+                    <input type="hidden" name="id" type="text" class="form-control" value="<%= possibility.getPossibilityId() %>">
+                </div>
                 <div class="form-group">
                     <label for="descriptionFR">Description FR</label>
-                    <input name="descriptionFR" type="text" class="form-control">
+                    <input name="descriptionFR" type="text" class="form-control" value="<%= possibility.getDescription().getText("fr") %>">
                 </div>
                 <div class="form-group">
                     <label for="descriptionDE">Description DE</label>
-                    <input name="descriptionDE" type="text" class="form-control">
+                    <input name="descriptionDE" type="text" class="form-control" value="<%= possibility.getDescription().getText("de") %>">
                 </div>
                 <div class="form-group">
                     <label for="descriptionEN">Description EN</label>
-                    <input name="descriptionEN" type="text" class="form-control">
+                    <input name="descriptionEN" type="text" class="form-control" value="<%= possibility.getDescription().getText("en") %>">
                 </div>
                 <div class="form-group">
                     <label for="points">Points</label>
-                    <input name="points" type="text" class="form-control">
+                    <input name="points" type="text" class="form-control" value="<%= possibility.getPoints() %> ">
                 </div>
                 <div class="form-group">
                     <label for="Question">Question</label>
@@ -38,7 +46,7 @@
                         <% } %>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Add Possibility</button>
+                <button type="submit" class="btn btn-primary">Modify Possibility</button>
             </form>
         </div>
     </div>

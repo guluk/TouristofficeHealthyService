@@ -3,6 +3,7 @@ package com.hevs.projectcloud.touristofficebackend.models;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +20,9 @@ public class Feedback {
 
     private List<Possibility> possibilities;
 
-    public Feedback() { }
+    public Feedback() {
+        this.possibilities = new ArrayList<Possibility>();
+    }
 
     public Long getFeedbackId() {
         return this.id;

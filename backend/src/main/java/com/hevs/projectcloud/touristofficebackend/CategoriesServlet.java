@@ -18,6 +18,10 @@ import static com.hevs.projectcloud.touristofficebackend.OfyService.ofy;
  */
 public class CategoriesServlet extends HttpServlet {
 
+    Long categoryId;
+    Text title;
+    Category category;
+
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try {
             List<Category> categories = ofy().load().type(Category.class).list();  // Result is async
@@ -29,9 +33,16 @@ public class CategoriesServlet extends HttpServlet {
                     case "add":
                         this.getServletContext().getRequestDispatcher("/category/add.jsp").forward(req, resp);
                         break;
+                    case "modify":
+                        categoryId = Long.parseLong(req.getParameter("id"));
+                        Category categorymodify = ofy().load().type(Category.class).id(categoryId).now();
+                        req.setAttribute("categorymodify", categorymodify);
+
+                        this.getServletContext().getRequestDispatcher("/category/modify.jsp").forward(req, resp);
+                        break;
                     case "delete":
                         // Load entity to delete
-                        Long categoryId = Long.parseLong(req.getParameter("id"));
+                        categoryId = Long.parseLong(req.getParameter("id"));
                         Category category = ofy().load().type(Category.class).id(categoryId).now();
 
                         // Delete entity if exists
@@ -58,10 +69,10 @@ public class CategoriesServlet extends HttpServlet {
         try {
             switch (this.getInitParameter("page")) {
                 case "add":
-                    Category category = new Category();
+                    category = new Category();
 
                     // Prepare descriptions
-                    Text title = new Text();
+                    title = new Text();
                     title.setText(
                         req.getParameter("titleEN"),
                         req.getParameter("titleFR"),
@@ -75,6 +86,27 @@ public class CategoriesServlet extends HttpServlet {
 
                     // Save entity
                     ofy().save().entity(category).now();
+                    break;
+                case "modify":
+
+                    categoryId = Long.parseLong(req.getParameter("id"));
+                    category = ofy().load().type(Category.class).id(categoryId).now();
+
+                    title = new Text();
+                    title.setText(
+                            req.getParameter("titleEN"),
+                            req.getParameter("titleFR"),
+                            req.getParameter("titleDE")
+                    );
+                    // Save description
+                    ofy().save().entity(title).now();
+
+                    // Create data for object category
+                    category.setTitle(title);
+
+                    // Save entity
+                    ofy().save().entity(category).now();
+
                     break;
             }
             resp.sendRedirect("/categories/list/");

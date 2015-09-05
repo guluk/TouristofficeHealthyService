@@ -1,29 +1,14 @@
 package com.hevs.projectcloud.touristofficebackend;
 
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.FetchOptions;
-import com.google.appengine.api.datastore.Query;
-import com.googlecode.objectify.Key;
-import com.googlecode.objectify.LoadResult;
-import com.googlecode.objectify.cmd.LoadType;
-import com.hevs.projectcloud.touristofficebackend.models.Category;
 import com.hevs.projectcloud.touristofficebackend.models.Possibility;
 import com.hevs.projectcloud.touristofficebackend.models.Question;
 import com.hevs.projectcloud.touristofficebackend.models.Text;
-
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import static com.hevs.projectcloud.touristofficebackend.OfyService.ofy;
 
 /**
@@ -31,6 +16,12 @@ import static com.hevs.projectcloud.touristofficebackend.OfyService.ofy;
  */
 public class PossibilitiesServlet extends HttpServlet
 {
+    Long possibilityId;
+    Possibility possibility;
+    Text description;
+    Question quest;
+    String questid;
+
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
     {
         try {
@@ -47,10 +38,18 @@ public class PossibilitiesServlet extends HttpServlet
                     case "add":
                         this.getServletContext().getRequestDispatcher("/possibility/add.jsp").forward(req, resp);
                         break;
+                    case "modify":
+                        possibilityId = Long.parseLong(req.getParameter("id"));
+                        Possibility possibilitymodify = ofy().load().type(Possibility.class).id(possibilityId).now();
+                        req.setAttribute("possibilitymodify", possibilitymodify);
+
+                        this.getServletContext().getRequestDispatcher("/possibility/modify.jsp").forward(req, resp);
+
+                        break;
                     case "delete":
                         // Load entity to delete
-                        Long possibilityId = Long.parseLong(req.getParameter("id"));
-                        Possibility possibility = ofy().load().type(Possibility.class).id(possibilityId).now();
+                        possibilityId = Long.parseLong(req.getParameter("id"));
+                        possibility = ofy().load().type(Possibility.class).id(possibilityId).now();
 
                         // Delete entity if exists
                         if (possibility != null) {
@@ -76,10 +75,43 @@ public class PossibilitiesServlet extends HttpServlet
         try {
             switch (this.getInitParameter("page")) {
                 case "add":
-                    Possibility possibility = new Possibility();
+                    possibility = new Possibility();
 
                     // Prepare descriptions
-                    Text description = new Text();
+                    description = new Text();
+                    description.setText(
+                            req.getParameter("descriptionEN"),
+                            req.getParameter("descriptionDE"),
+                            req.getParameter("descriptionFR")
+                    );
+
+                    // Save description
+                    ofy().save().entity(description).now();
+
+
+                    // Create data for object possibility
+                    possibility.setDescription(description);
+                    possibility.setPoints(Integer.parseInt(req.getParameter("points")));
+
+                    // Save entity
+                    ofy().save().entity(possibility).now();
+
+                    //get the object question
+                    // add the possibility to a list
+                    // save the question with the list
+                    questid = req.getParameter("question");
+                    if (questid != null) {
+                        quest = ofy().load().type(Question.class).id(Long.parseLong(questid)).now();
+                        quest.addPossibility(possibility);
+                        ofy().save().entity(quest).now();
+                    }
+                    break;
+                case "modify":
+                    possibilityId = Long.parseLong(req.getParameter("id"));
+                    possibility = ofy().load().type(Possibility.class).id(possibilityId).now();
+
+                    // Prepare descriptions
+                    description = new Text();
                     description.setText(
                             req.getParameter("descriptionEN"),
                             req.getParameter("descriptionDE"),
@@ -101,16 +133,12 @@ public class PossibilitiesServlet extends HttpServlet
                     //get the object question
                     // add the possibility to a list
                     // save the question with the list
-                    String questid = req.getParameter("questions");
-                    Question quest = ofy().load().type(Question.class).id(Long.parseLong(questid)).now();
+                    questid = req.getParameter("question");
+                    quest = ofy().load().type(Question.class).id(Long.parseLong(questid)).now();
 
-                    List<Possibility> listPo = null;
+                    quest.addPossibility(possibility);
 
-                    listPo.add(possibility);
-                    quest.setPossibilities(listPo);
                     ofy().save().entity(quest).now();
-
-
                     break;
             }
             resp.sendRedirect("/possibilities/list/");
