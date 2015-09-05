@@ -22,15 +22,15 @@
                 </div>
                 <div class="form-group">
                     <label for="titleFR">Question FR</label>
-                    <input name="titleFR" type="text" class="form-control" value="<%= question.getDescription().getText("fr") %> ">
+                    <input name="titleFR" type="text" class="form-control" value="<%= question.getDescription().getText("fr") %>">
                 </div>
                 <div class="form-group">
                     <label for="titleDE">Question DE</label>
-                    <input name="titleDE" type="text" class="form-control" value="<%= question.getDescription().getText("de") %> ">
+                    <input name="titleDE" type="text" class="form-control" value="<%= question.getDescription().getText("de") %>">
                 </div>
                 <div class="form-group">
                      <label for="titleEN">Question EN</label>
-                     <input name="titleEN" type="text" class="form-control" value="<%= question.getDescription().getText("en") %> ">
+                     <input name="titleEN" type="text" class="form-control" value="<%= question.getDescription().getText("en") %>">
                  </div>
 
                 <div class="form-group">

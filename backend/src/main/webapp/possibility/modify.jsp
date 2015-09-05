@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group">
                     <label for="points">Points</label>
-                    <input name="points" type="text" class="form-control" value="<%= possibility.getPoints() %> ">
+                    <input name="points" type="text" class="form-control" value="<%= possibility.getPoints() %>">
                 </div>
                 <div class="form-group">
                     <label for="Question">Question</label>
