@@ -6,8 +6,17 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.hevs.projectcloud.touristofficebackend.tohsaService.TohsaService;
+import com.hevs.projectcloud.touristofficebackend.tohsaService.model.Feedback;
+import com.hevs.projectcloud.touristofficebackend.tohsaService.model.FeedbackCollection;
+import com.hevs.projectcloud.touristofficebackend.tohsaService.model.Possibility;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class QuestionnaireDetailsActivity extends Activity {
 
@@ -22,6 +31,13 @@ public class QuestionnaireDetailsActivity extends Activity {
      * The identifier of the actual displayed question or feedback question on the screen
      */
     private long question_id;
+
+    RadioGroup possibilitiesRadioGroup;
+
+    /**
+     * The feedback and question items of the whole questionnaire
+     */
+    private ArrayList<Feedback> fb_qest_items;
 
 
     @Override
@@ -64,6 +80,7 @@ public class QuestionnaireDetailsActivity extends Activity {
 
         switch (view.getId()) {
             case R.id.button_next_question :
+                persistReply();
                 loadNextQuestion(this.question_id);
                 break;
         }
@@ -75,10 +92,45 @@ public class QuestionnaireDetailsActivity extends Activity {
      */
     private void loadNextQuestion(long question_id) {
 
-        //TODO: Get next question of the questionnaire
+        Feedback feedback = null;
 
-        // Refresh the screen
-        Intent refreshIntent = new Intent(this, QuestionnaireDetailsActivity.class);
-        startActivity(refreshIntent);
+        //LG/ Try to get Feedback or Question object from the API
+        try {
+            feedback = tohsaServiceAPI.feedbacks().getFeedback(question_id).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        TextView questionFeedbackText = (TextView) findViewById(R.id.details_question_text);
+        questionFeedbackText.setText(feedback.getDescription().getTextFR());
+
+        //LG/ Fill the radioButtons with data
+        RadioButton rb1 = (RadioButton) findViewById(R.id.radioButton);
+        RadioButton rb2 = (RadioButton) findViewById(R.id.radioButton2);
+        RadioButton rb3 = (RadioButton) findViewById(R.id.radioButton3);
+
+        int index = 0;
+        //RadioGroup.LayoutParams layoutParams = new RadioGroup.LayoutParams(BIND_AUTO_CREATE);
+
+        for(Possibility p : feedback.getPossibilities()) {
+            RadioButton r = new RadioButton(this);
+            r.setText(p.getDescription().getTextFR());
+
+            //possibilitiesRadioGroup.addView(r, index, layoutParams);
+            index ++;
+        }
+
+        //TODO: If it is the last question of the questionnaire, open the summary activity
+
+            // Refresh the screen
+            Intent refreshIntent = new Intent(this, QuestionnaireDetailsActivity.class);
+            startActivity(refreshIntent);
+    }
+
+    private void persistReply() {
+
+        RadioGroup possibilities = (RadioGroup) findViewById(R.id.radioGroup);
+        possibilities.getCheckedRadioButtonId();
+
     }
 }
