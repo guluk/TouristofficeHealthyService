@@ -54,6 +54,9 @@ public class QuestionnairesServlet extends HttpServlet
                         }
                         this.getServletContext().getRequestDispatcher("/questionnaire/list.jsp").forward(req, resp);
                         break;
+                    case "export":
+                        this.getServletContext().getRequestDispatcher("/_ah/api/tohsaService/v1/questionnaires").forward(req, resp);
+                        break;
                 }
             } else {
                 this.getServletContext().getRequestDispatcher("/questionnaire/list.jsp").forward(req, resp);

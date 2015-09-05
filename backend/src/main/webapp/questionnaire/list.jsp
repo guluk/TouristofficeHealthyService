@@ -12,6 +12,10 @@
             <span class="glyphicon glyphicon-plus"></span>
             Add Questionnaire
         </a>
+        <a class="btn btn-primary btn-sm" href="/questionnaires/export/">
+            <span class="glyphicon glyphicon-floppy-open"></span>
+            Export Questionnaire
+        </a>
     </h1>
 
     <div class="row">
