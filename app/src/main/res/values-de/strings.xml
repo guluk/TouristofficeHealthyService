@@ -28,4 +28,15 @@
     <string name="action_authors">"Gwenaëlle Abbé, Samuel Dorsaz, Lukas Germann, Daniel Pott</string>
     <string name="about_thanks">Danke, dass Sie unsere App nutzen!</string>
 
+    <!-- Strings used in MainActivity -->
+    <string name="main_readme_text">Diese App wird Ihnen vom lokalen Tourismusbüro und den
+        Verkehrsvereinen präsentiert und hilft Ihnen, die besten auf Sie zugeschnittenen
+        Aktivitäten zu finden. Beginnen Sie mit einem neuen Fragenbogen, indem Sie auf "NEU"
+        tippen oder schauen Sie sich einen vormals von Ihnen ausgefüllten Fragebogen an. Klicken
+        Sie dazu auf "ARCHIV".</string>
+    <string name="main_readme_text2">Ihre Mobiltelefonnummer wird nur verwendet, um Sie im Falle
+        einer persönlichen Beratung zu kontaktieren und wird keinesfalls an Dritte weitergegeben.</string>
+    <string name="main_btn_new">NEU</string>
+    <string name="main_btn_archiv">ARCHIV</string>
+
 </resources>
