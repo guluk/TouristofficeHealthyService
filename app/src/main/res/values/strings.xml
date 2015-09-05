@@ -1,6 +1,6 @@
 <resources>
     <!-- General strings such as application and activity names -->
-    <string name="app_name">TouristofficeHealthyService</string>
+    <string name="app_name">TOHSA</string>
     <string name="activity_welcome_name">Getting started</string>
     <string name="activity_main_name">Home</string>
     <string name="activity_questionnaire_name">Questionnaires</string>
@@ -29,10 +29,16 @@
     <string name="action_authors">Gwenaëlle Abbé, Samuel Dorsaz, Lukas Germann, Daniel Pott</string>
     <string name="about_thanks">Merci d\'utiliser notre application!</string>
 
-    <string name="hello_world">Hello world!</string>
-
     <!-- Strings used in MainActivity -->
-
+    <string name="main_readme_text">Cette application vous est proposé par l\'office de
+    tourisme locale et vous aide à trouver les activitées les plus adapté pour vous.
+    Commencez par remplir un nouveau questionnaire par le bouton "NOUVEAU" ou consultez
+    un ancien questionnaire par le bouton "ANCIENS".</string>
+    <string name="main_readme_text2">Votre numéro de téléphone est utilisé seulement
+    pour vous contacter pour une consultation personnalisé auprès de l\'office de tourisme
+    et ne va jamais être donné à de tiers.</string>
+    <string name="main_btn_new">NOUVEAU</string>
+    <string name="main_btn_archiv">ANCIENS</string>
 
     <!-- Strings used in QuestionnaireActivity -->
 

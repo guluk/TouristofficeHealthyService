@@ -7,14 +7,24 @@
 
     <TextView
         android:id="@+id/readmeText"
-        android:text="Hallo Text"
+        android:text="@string/main_readme_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/readmeText2"
+        android:text="@string/main_readme_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New"
+        android:text="@string/main_btn_new"
         android:id="@+id/newButton"
         android:onClick="onClick"
         android:layout_alignParentBottom="true"
@@ -25,11 +35,21 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Archived"
+        android:text="@string/main_btn_archiv"
         android:id="@+id/archivedButton"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:onClick="onClick" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@drawable/vw_2015"
+        android:layout_below="@+id/readmeText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp" />
 
 </RelativeLayout>

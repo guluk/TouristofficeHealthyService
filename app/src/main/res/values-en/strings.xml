@@ -1,6 +1,6 @@
 <resources>
     <!-- General strings such as application and activity names -->
-    <string name="app_name">TouristofficeHealthyService</string>
+    <string name="app_name">TOHSA</string>
     <string name="activity_welcome_name">Choose language</string>
     <string name="activity_main_name">Home</string>
     <string name="activity_questionnaire_name">Questionnaries</string>
@@ -28,5 +28,16 @@
     <string name="action_about">About</string>
     <string name="action_authors">"Gwenaëlle Abbé, Samuel Dorsaz, Lukas Germann, Daniel Pott</string>
     <string name="about_thanks">Thank you using this app!</string>
+
+    <!-- Strings used in MainActivity -->
+    <string name="main_readme_text">This application is presented by the local tourist office
+        and helps you to find the activities the most adapted for you during your stay.
+        Begin by fill in a new questionnary with the "NEW"-button. The button "ARCHIEVED" allows
+        you to consult old questionnaries, which you already answered.".</string>
+    <string name="main_readme_text2">Your phone numer is only used to contact you in case of a
+        personalised consulting at the tourist office. It will never be given or sold to a
+        third party.</string>
+    <string name="main_btn_new">NEW</string>
+    <string name="main_btn_archiv">ARCHIEVED</string>
 
 </resources>

@@ -6,8 +6,20 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.hevs.projectcloud.touristofficebackend.tohsaService.TohsaService;
+import com.hevs.projectcloud.touristofficebackend.tohsaService.model.Feedback;
+import com.hevs.projectcloud.touristofficebackend.tohsaService.model.FeedbackCollection;
+import com.hevs.projectcloud.touristofficebackend.tohsaService.model.Possibility;
+import com.hevs.projectcloud.touristofficebackend.tohsaService.model.Question;
+import com.hevs.projectcloud.touristofficebackend.tohsaService.model.Reply;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class QuestionnaireDetailsActivity extends Activity {
 
@@ -23,11 +35,25 @@ public class QuestionnaireDetailsActivity extends Activity {
      */
     private long question_id;
 
+    RadioGroup possibilitiesRadioGroup;
+
+    /**
+     * The feedback and question items of the whole questionnaire
+     */
+    private ArrayList<Feedback> fb_qest_items;
+
+    /**
+     * The feedback or question item actually display in this activity
+     */
+    private Feedback actual_fb_quest_item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         tohsaServiceAPI = CloudEndpointBuilderHelper.getEndpoints();
+
+        //LG/ Get the feedback or feedback question to display
+        loadQuestion(this.question_id);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionnaire_details);
@@ -64,7 +90,8 @@ public class QuestionnaireDetailsActivity extends Activity {
 
         switch (view.getId()) {
             case R.id.button_next_question :
-                loadNextQuestion(this.question_id);
+                persistReply();
+                loadQuestion(this.question_id);
                 break;
         }
     }
@@ -73,12 +100,52 @@ public class QuestionnaireDetailsActivity extends Activity {
      *
      * @param question_id the id of the actually displayed question
      */
-    private void loadNextQuestion(long question_id) {
+    private void loadQuestion(long question_id) {
 
-        //TODO: Get next question of the questionnaire
+        Feedback actual_fb_quest_item = null;
 
-        // Refresh the screen
-        Intent refreshIntent = new Intent(this, QuestionnaireDetailsActivity.class);
-        startActivity(refreshIntent);
+        //LG/ Try to get Feedback or Question object from the API
+        try {
+            actual_fb_quest_item = tohsaServiceAPI.feedbacks().getFeedback(question_id).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        TextView questionFeedbackText = (TextView) findViewById(R.id.details_question_text);
+        questionFeedbackText.setText(actual_fb_quest_item.getDescription().getTextFR());
+
+        //LG/ Fill the radioButtons with data
+        RadioButton rb1 = (RadioButton) findViewById(R.id.radioButton);
+        RadioButton rb2 = (RadioButton) findViewById(R.id.radioButton2);
+        RadioButton rb3 = (RadioButton) findViewById(R.id.radioButton3);
+
+        int index = 0;
+        LinearLayout ll = new LinearLayout(this);
+        ll.setOrientation(LinearLayout.HORIZONTAL);
+        possibilitiesRadioGroup.addView(ll);
+
+        for(Possibility p : actual_fb_quest_item.getPossibilities()) {
+            RadioButton rb = new RadioButton(this);
+            rb.setText(p.getDescription().getTextFR());
+            ll.addView(rb);
+            index ++;
+        }
+
+        //TODO: If it is the last question of the questionnaire, open the summary activity
+
+            // Refresh the screen
+            Intent refreshIntent = new Intent(this, QuestionnaireDetailsActivity.class);
+            startActivity(refreshIntent);
+    }
+
+    private void persistReply() {
+
+        RadioGroup possibilities = (RadioGroup) findViewById(R.id.radioGroup);
+
+        // Go through the possibilities of the actual question and check out which option has
+        // has been clicked by the user
+        for(Possibility p : actual_fb_quest_item.getPossibilities()) {
+            possibilities.getCheckedRadioButtonId();
+        }
     }
 }
